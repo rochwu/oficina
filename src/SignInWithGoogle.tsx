@@ -1,10 +1,17 @@
 /// <reference types="@types/google.accounts" />
 
 import {Component, onMount} from 'solid-js';
+import {styled} from 'solid-styled-components';
 
 const callback = (response: google.accounts.id.CredentialResponse) => {
   console.log(response);
 };
+
+const Position = styled.div({
+  position: 'absolute',
+  right: '0',
+  top: '0',
+});
 
 export const SignInWithGoogle: Component = () => {
   let ref: HTMLDivElement = undefined as never;
@@ -34,5 +41,5 @@ export const SignInWithGoogle: Component = () => {
     connect();
   });
 
-  return <div ref={ref} />;
+  return <Position ref={ref} />;
 };
