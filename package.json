@@ -30,6 +30,8 @@
     "yarn-deduplicate": "^6.0.2"
   },
   "dependencies": {
+    "firebase": "^11.3.1",
+    "jose": "^5.10.0",
     "lodash-es": "^4.17.21",
     "normalize.css": "^8.0.1",
     "solid-js": "^1.8.11",

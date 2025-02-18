@@ -4,11 +4,15 @@ import {getFirstWeekday} from '../getFirstWeekday';
 import {getDays} from '../getDays';
 import {MonthProvider, YearProvider} from '../Context';
 import {Day} from '../Day';
-import {Weekdays} from '../Weekdays';
+import {vars} from '../css';
 
-const Container = styled.div({
+const Grid = styled.div({
   display: 'grid',
   gridTemplateColumns: 'repeat(7, 1fr)',
+  gap: vars.gap,
+  // width: '100%',
+  // padding: '0 8px',
+  // boxSizing: 'border-box',
 });
 
 type Props = {
@@ -25,8 +29,7 @@ export const Month: Component<Props> = (props) => {
   return (
     <YearProvider year={props.year}>
       <MonthProvider month={props.month}>
-        <Container>
-          {/* <Weekdays /> */}
+        <Grid>
           <Index each={tiles}>
             {(_, index) => {
               let day = index - firstWeekday;
@@ -35,7 +38,7 @@ export const Month: Component<Props> = (props) => {
               return <Day day={day} weekday={index % 7} />;
             }}
           </Index>
-        </Container>
+        </Grid>
       </MonthProvider>
     </YearProvider>
   );
