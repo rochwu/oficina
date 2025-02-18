@@ -2,23 +2,42 @@
 
 import {Component, onMount} from 'solid-js';
 import {styled} from 'solid-styled-components';
+import {decodeJwt} from 'jose';
+import {setStore} from './store';
 
-const callback = (response: google.accounts.id.CredentialResponse) => {
-  console.log(response);
+const callback = async (response: google.accounts.id.CredentialResponse) => {
+  const credential = response.credential;
+
+  if (!credential) {
+    console.error('❌ bad login');
+    return;
+  }
+
+  // sub is the unique ID Google assigns to all accounts
+  const {sub} = decodeJwt(credential);
+
+  if (!sub) {
+    console.error('❌ bad login token');
+    return;
+  }
+
+  setStore('user', sub);
 };
 
 const Position = styled.div({
   position: 'absolute',
-  right: '0',
-  top: '0',
+  right: '0.5em',
+  top: '0.5em',
 });
+
+const hasGoogle = () => window.hasOwnProperty('google');
 
 export const SignInWithGoogle: Component = () => {
   let ref: HTMLDivElement = undefined as never;
 
   onMount(() => {
     const connect = () => {
-      if (!google || !ref) {
+      if (!hasGoogle() || !ref) {
         requestAnimationFrame(connect);
         return;
       }
