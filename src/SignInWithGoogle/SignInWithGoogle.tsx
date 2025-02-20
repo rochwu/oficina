@@ -46,7 +46,7 @@ export const SignInWithGoogle: Component = () => {
 
   const [isNotRedirect] = createResource(() => getRedirectResult(auth));
 
-  const isNotUser = () => !!store.user;
+  const isNotUser = () => !store.user;
 
   return (
     <Show when={isNotRedirect.state === 'ready' && isNotUser()}>
