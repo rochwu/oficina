@@ -1,8 +1,10 @@
 import type {Component} from 'solid-js';
 import {SignInWithGoogle} from './SignInWithGoogle';
 import {styled} from 'solid-styled-components';
-import {Month} from './Month';
 import {GlobalStyles} from './css';
+import {TypeSelect} from './TypeSelect';
+import {quarters, today} from './constants';
+import {Q} from './Q';
 
 const Container = styled.div({
   display: 'flex',
@@ -18,15 +20,18 @@ const Container = styled.div({
   width: '100%',
 });
 
-const today = new Date();
+const getQuarter = (month: number) => {
+  return quarters.findIndex((quarter) => quarter.find((m) => m === month));
+};
 
 export const App: Component = () => {
   return (
     <>
       <GlobalStyles />
       <Container>
+        <Q quarter={getQuarter(today.getMonth())} year={today.getFullYear()} />
+        <TypeSelect />
         <SignInWithGoogle />
-        <Month month={today.getMonth()} year={today.getFullYear()} />{' '}
       </Container>
     </>
   );
