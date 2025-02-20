@@ -1,20 +1,15 @@
 import {JSX} from 'solid-js';
 import {vars} from '../css';
-import {store} from '../store/store';
-import {Ymd} from '../types';
+import {DayType} from '../types';
 
-export const getTileStyle = ({
-  year,
-  month,
-  day,
-}: Ymd): JSX.CSSProperties | undefined => {
-  const type = store.calendar[year]?.[month]?.[day]?.type;
-
+export const getTileStyle = (type: DayType): JSX.CSSProperties | undefined => {
   switch (type) {
+    case 'holiday':
+    case 'pto':
     case 'wfo': {
       return {
-        'background-color': vars.wfo.backgroundColor,
-        color: vars.wfo.color,
+        'background-color': vars[type].backgroundColor,
+        color: vars[type].color,
       };
     }
     default:

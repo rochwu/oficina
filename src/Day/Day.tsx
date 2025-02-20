@@ -1,9 +1,10 @@
-import {Component, JSX, Show} from 'solid-js';
+import {Component, Show} from 'solid-js';
 import {styled} from 'solid-styled-components';
 import {useMonth, useYear} from '../Context';
 import {vars} from '../css';
-import {remove, select, store} from '../store/store';
 import {getTileStyle} from './getTileStyle';
+import {useEvents} from './useEvents';
+import {store} from '../store';
 
 type Props = {
   day: number;
@@ -31,6 +32,14 @@ const Container = styled.div({
   cursor: 'pointer',
   // padding: '8px',
   // boxSizing: 'border-box',
+
+  '&[data-weekend]': {
+    color: vars.weekend.color,
+  },
+
+  '&[data-disabled="true"]': {
+    pointerEvents: 'none',
+  },
 });
 
 export const Day: Component<Props> = (props) => {
@@ -39,43 +48,25 @@ export const Day: Component<Props> = (props) => {
 
   const isWeekend = props.weekday === 0 || props.weekday === 6;
 
-  let stopSave = true;
-  let timeout = NaN;
+  const events = useEvents({year, month, day: props.day});
 
-  const reset = () => {
-    clearTimeout(timeout);
-    stopSave = true;
-  };
+  const type = () => store.calendar[year]?.[month]?.[props.day]?.type;
 
-  const down = () => {
-    stopSave = false;
-    timeout = window.setTimeout(() => {
-      stopSave = true;
-      remove({month, year, day: props.day});
-    }, 1000);
-  };
+  const disabled = () => {
+    const mine = type();
 
-  const up = () => {
-    const stop = stopSave;
-    reset();
-
-    if (!stop) {
-      select({month, year, day: props.day});
-    }
+    return mine && mine !== store.type;
   };
 
   return (
     <Container
       role="button"
-      onPointerUp={up}
-      onPointerDown={down}
-      onBlur={reset}
-      style={isWeekend ? {color: vars.weekend.color} : undefined}
+      {...events}
+      data-disabled={disabled()}
+      data-weekend={isWeekend ? '' : undefined}
     >
       <Show when={props.day >= 0} fallback={<Tile />}>
-        <Tile style={getTileStyle({year, month, day: props.day})}>
-          {props.day + 1}
-        </Tile>
+        <Tile style={getTileStyle(type())}>{props.day + 1}</Tile>
       </Show>
     </Container>
   );

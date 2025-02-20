@@ -23,4 +23,9 @@ export const {root, vars} = createCssVars({
     backgroundColor: '#B0BEC5',
     color: 'black',
   },
+  select: {
+    fontSize: '32px',
+    backgroundColor: 'white',
+    color: 'black',
+  },
 });

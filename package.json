@@ -11,11 +11,13 @@
     "clean-branches": "git branch | grep -v \"main\" | xargs git branch -D",
     "deduplicate": "yarn-deduplicate",
     "format": "prettier . --write",
+    "get-firebase-scripts": "node scripts/getFirebaseScripts.mjs",
     "lint": "eslint . --quiet --fix"
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/google.accounts": "^0.0.14",
+    "@types/lodash-es": "^4.17.12",
+    "@vitejs/plugin-basic-ssl": "^1.2.0",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -30,8 +32,8 @@
     "yarn-deduplicate": "^6.0.2"
   },
   "dependencies": {
+    "@kobalte/core": "^0.13.8",
     "firebase": "^11.3.1",
-    "jose": "^5.10.0",
     "lodash-es": "^4.17.21",
     "normalize.css": "^8.0.1",
     "solid-js": "^1.8.11",
