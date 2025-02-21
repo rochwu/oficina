@@ -1,10 +1,10 @@
 import {collection, getDocs} from 'firebase/firestore';
-import {Day, Ymd} from '../types';
+import {Day, Ym, Ymd} from '../types';
 import {changeDay, setStore, store} from './store';
 import {db} from '../firebase';
 import {produce} from 'solid-js/store';
 
-export const load = async (yms: Pick<Ymd, 'year' | 'month'>[]) => {
+export const load = async (yms: Ym[]) => {
   const user = store.user;
 
   const promises = yms.map(async ({year, month}) => {

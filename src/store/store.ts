@@ -38,19 +38,23 @@ const getDayRef = (ymd: Ymd) => {
   );
 };
 
-export const select = async (ymd: Ymd) => {
-  try {
-    await runTransaction(db, async (transaction) => {
-      const dayRef = getDayRef(ymd);
+export const select = (ymd: Ymd) => {
+  const {year, month, day} = ymd;
 
-      transaction.set(dayRef, {
-        type: store.type,
-        updated: serverTimestamp(),
-      });
-    });
-  } catch (error) {
-    console.error('I fucked up selecting', error);
+  if (store.calendar[year]?.[month]?.[day]?.type === store.type) {
+    return;
   }
+
+  runTransaction(db, async (transaction) => {
+    const dayRef = getDayRef(ymd);
+
+    transaction.set(dayRef, {
+      type: store.type,
+      updated: serverTimestamp(),
+    });
+  }).catch((error) => {
+    console.error('I fucked up selecting', error);
+  });
 
   setStore(
     'calendar',
@@ -61,18 +65,16 @@ export const select = async (ymd: Ymd) => {
   );
 };
 
-export const remove = async (ymd: Ymd) => {
-  try {
-    await runTransaction(db, async (transaction) => {
-      const dayRef = getDayRef(ymd);
+export const remove = (ymd: Ymd) => {
+  runTransaction(db, async (transaction) => {
+    const dayRef = getDayRef(ymd);
 
-      transaction.set(dayRef, {
-        updated: serverTimestamp(),
-      });
+    transaction.set(dayRef, {
+      updated: serverTimestamp(),
     });
-  } catch (error) {
+  }).catch((error) => {
     console.error('I fucked up removing', error);
-  }
+  });
 
   const {year, month, day} = ymd;
 

@@ -2,24 +2,15 @@ import {Component, Show} from 'solid-js';
 import {styled} from 'solid-styled-components';
 import {useMonth, useYear} from '../Context';
 import {vars} from '../css';
-import {getTileStyle} from './getTileStyle';
-import {useEvents} from './useEvents';
 import {store} from '../store';
+import {useEvents} from './useEvents';
+import {Tile} from './Tile';
+import {today} from '../constants';
 
 type Props = {
   day: number;
   weekday: number;
 };
-
-const Tile = styled.div({
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-
-  borderRadius: '50%',
-  width: '100%',
-  height: '100%',
-});
 
 const Container = styled.div({
   display: 'flex',
@@ -31,7 +22,6 @@ const Container = styled.div({
 
   cursor: 'pointer',
   // padding: '8px',
-  // boxSizing: 'border-box',
 
   '&[data-weekend]': {
     color: vars.weekend.color,
@@ -41,6 +31,8 @@ const Container = styled.div({
     pointerEvents: 'none',
   },
 });
+
+const Fallback = styled.div({});
 
 export const Day: Component<Props> = (props) => {
   const year = useYear();
@@ -52,22 +44,39 @@ export const Day: Component<Props> = (props) => {
 
   const type = () => store.calendar[year]?.[month]?.[props.day]?.type;
 
+  const isInMonth = () => props.day >= 0; // NaN
+
   const disabled = () => {
     const mine = type();
 
     return mine && mine !== store.type;
   };
 
+  const maybeToday = () => {
+    const is =
+      today.getFullYear() === year &&
+      today.getMonth() === month &&
+      today.getDate() === props.day;
+
+    return is
+      ? {
+          'data-today': '',
+        }
+      : {};
+  };
+
   return (
-    <Container
-      role="button"
-      {...events}
-      data-disabled={disabled()}
-      data-weekend={isWeekend ? '' : undefined}
-    >
-      <Show when={props.day >= 0} fallback={<Tile />}>
-        <Tile style={getTileStyle(type())}>{props.day + 1}</Tile>
-      </Show>
-    </Container>
+    <Show when={isInMonth()} fallback={<Fallback />}>
+      <Container
+        role="button"
+        {...events}
+        data-disabled={disabled()}
+        data-weekend={isWeekend ? '' : undefined}
+      >
+        <Tile type={type()} {...maybeToday()}>
+          {props.day + 1}
+        </Tile>
+      </Container>
+    </Show>
   );
 };

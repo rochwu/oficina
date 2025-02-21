@@ -1,11 +1,10 @@
 import {Component, Index, onMount} from 'solid-js';
 import {styled} from 'solid-styled-components';
-import {getFirstWeekday} from '../getFirstWeekday';
-import {getDays} from '../getDays';
+import {getDays, getFirstDayOfWeek} from '../date';
 import {MonthProvider, YearProvider} from '../Context';
 import {Day} from '../Day';
 import {vars} from '../css';
-import {Ymd} from '../types';
+import {Ym} from '../types';
 import {today} from '../constants';
 
 const Container = styled.div({
@@ -22,11 +21,19 @@ const Grid = styled.div({
   display: 'grid',
   gridTemplateColumns: 'repeat(7, 1fr)',
   gap: vars.gap,
+
+  position: 'relative',
 });
 
-type Props = Pick<Ymd, 'year' | 'month'>;
+type Props = Ym;
 
-const Name = styled.div({});
+const Name = styled.div({
+  textTransform: 'uppercase',
+  position: 'absolute',
+  transform: 'translateY(-100%)',
+  width: '100%',
+  textAlign: 'center',
+});
 
 const months = [
   'January',
@@ -46,7 +53,7 @@ const months = [
 export const Month: Component<Props> = (props) => {
   let ref!: HTMLDivElement;
 
-  const firstWeekday = getFirstWeekday(props);
+  const firstWeekday = getFirstDayOfWeek(props);
   const days = getDays(props);
 
   const tiles = Array.from({length: firstWeekday + days});
@@ -61,8 +68,8 @@ export const Month: Component<Props> = (props) => {
     <YearProvider year={props.year}>
       <MonthProvider month={props.month}>
         <Container ref={ref}>
-          <Name>{months[props.month]}</Name>
           <Grid>
+            <Name>{months[props.month]}</Name>
             <Index each={tiles}>
               {(_, index) => {
                 let day = index - firstWeekday;

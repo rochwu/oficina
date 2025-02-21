@@ -1,21 +1,32 @@
-import {Component, createEffect, createResource, For} from 'solid-js';
-import {Ymd} from '../types';
+import {Component, createEffect, createMemo, For} from 'solid-js';
+import {styled} from 'solid-styled-components';
 import {Month} from '../Month';
 import {quarters} from '../constants';
-import {styled} from 'solid-styled-components';
-import {load} from '../store/load';
+import {getWeekdays} from '../date';
 import {store} from '../store';
+import {load} from '../store/load';
+import {DayType, Ym} from '../types';
+import {useTypeSum} from './useTypeSum';
+import {Rto} from './Rto';
 
 type Props = {
   /**
    * starts at 0
    */
   quarter: number;
-} & Pick<Ymd, 'year'>;
+} & Ym;
 
 const Container = styled.div({
+  position: 'relative',
   height: '100%',
   width: '100%',
+});
+
+const SnapScroll = styled.div({
+  height: '100%',
+  width: '100%',
+
+  scrollbarWidth: 'none',
 
   overflowY: 'auto',
   scrollSnapType: 'y mandatory',
@@ -45,9 +56,14 @@ export const Q: Component<Props> = (props) => {
     }
   });
 
+  const typeSum = useTypeSum(yms);
+
   return (
     <Container>
-      <For each={yms}>{(ym) => <Month {...ym} />}</For>
+      <SnapScroll>
+        <For each={yms}>{(ym) => <Month {...ym} />}</For>
+      </SnapScroll>
+      <Rto types={typeSum()} yms={yms} />
     </Container>
   );
 };
