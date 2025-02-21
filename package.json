@@ -11,6 +11,7 @@
     "clean-branches": "git branch | grep -v \"main\" | xargs git branch -D",
     "deduplicate": "yarn-deduplicate",
     "format": "prettier . --write",
+    "get-firebase-scripts": "node scripts/getFirebaseScripts.mjs",
     "lint": "eslint . --quiet --fix"
   },
   "license": "MIT",
