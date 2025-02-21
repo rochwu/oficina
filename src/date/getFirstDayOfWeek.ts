@@ -1,7 +1,7 @@
 /**
  * Sunday is 0
  */
-export const getFirstWeekday = ({
+export const getFirstDayOfWeek = ({
   year,
   month,
 }: {

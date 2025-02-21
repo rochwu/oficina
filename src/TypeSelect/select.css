@@ -38,6 +38,7 @@
   overflow: hidden;
   width: 100%;
 }
+
 .select__value[data-placeholder-shown] {
   color: hsl(240 4% 46%);
 }

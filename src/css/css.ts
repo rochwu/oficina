@@ -5,6 +5,12 @@ export const {root, vars} = createCssVars({
   color: 'black',
   fontFamily: 'Arial, sans-serif',
   gap: '8px',
+  day: {
+    fontSize: '16px',
+  },
+  today: {
+    fontSize: '24px',
+  },
   tile: {
     size: '48px', // Min accessible button size
   },
@@ -27,5 +33,8 @@ export const {root, vars} = createCssVars({
     fontSize: '32px',
     backgroundColor: 'white',
     color: 'black',
+  },
+  hint: {
+    size: '12px',
   },
 });

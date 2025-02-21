@@ -15,3 +15,5 @@ export type Ymd = {
   month: number;
   day: number;
 };
+
+export type Ym = Pick<Ymd, 'year' | 'month'>;
