@@ -2,7 +2,7 @@ import {initializeApp} from 'firebase/app';
 
 const config = {
   apiKey: 'AIzaSyA9XPPMsH55-9o689aqs_IaB4jHA9yY0Dk',
-  authDomain: 'dame-follow.firebaseapp.com',
+  authDomain: 'rolando.ooo/oficina',
   projectId: 'dame-follow',
   storageBucket: 'dame-follow.firebasestorage.app',
   messagingSenderId: '992894988444',
