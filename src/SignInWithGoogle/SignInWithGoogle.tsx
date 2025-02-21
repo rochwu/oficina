@@ -19,6 +19,14 @@ const Position = styled.div({
   right: vars.gap,
 });
 
+/**
+ * To SignInWithGoogle a fuckton of shit had to happen and I think I can refine it
+ *
+ * firebase authDomain is set to `rolando.ooo/oficina` which then we need
+ * Cloudflare to redirect `rolando.ooo/oficina/__/auth/handler` to `dame-follow.firebaseapp.com/__/auth/handler`
+ * Cloud Console OAuth to have `rolando.ooo/oficina/__/auth/handler` as an authorized redirect URL
+ * Firebase Hosting to host the files, which I think we can remove
+ */
 export const SignInWithGoogle: Component = () => {
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
