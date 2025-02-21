@@ -8,7 +8,7 @@ const Container = styled.div({
   position: 'absolute',
   top: '0',
   width: '100%',
-  padding: `calc(${vars.gap} * 2)`,
+  padding: vars.gap,
   boxSizing: 'border-box',
 });
 

@@ -36,13 +36,11 @@ export const Rto: Component<Props> = (props) => {
     const {wfo, pto, holiday} = props.types;
     const total = half - holiday - pto;
 
-    console.log('total', total);
-
     return {
       wfo,
       required: total,
-      total: getWeekdaysRemaining({from: today, to: props.yms.at(-1)!}),
-      remaining: Math.max(total - wfo, 0),
+      possible: getWeekdaysRemaining({from: today, to: props.yms.at(-1)!}),
+      missing: Math.max(total - wfo, 0),
     };
 
     // return `${wfo} / ${total} // ${getWeekdaysRemaining({from: today, to: props.yms.at(-1)!})}`;
@@ -51,7 +49,7 @@ export const Rto: Component<Props> = (props) => {
   return (
     <Container>
       <Value>{`${rto().wfo} / ${rto().required}`}</Value>
-      <Value>{`${rto().remaining} / ${rto().total}`}</Value>
+      <Value>{`${rto().missing} / ${rto().possible}`}</Value>
     </Container>
   );
 };

@@ -48,7 +48,7 @@ const months = [
   'October',
   'November',
   'December',
-];
+].map((m) => m.substring(0, 4)); // Thought it'd be funny to be wonky 🤷‍♂️
 
 export const Month: Component<Props> = (props) => {
   let ref!: HTMLDivElement;
