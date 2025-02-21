@@ -32,8 +32,6 @@ export const useTypeSum = (yms: Ym[]) => {
         result.pto += pto;
         result.holiday += holiday;
 
-        console.log('result', result);
-
         return result;
       },
       {

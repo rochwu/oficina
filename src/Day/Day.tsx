@@ -56,7 +56,7 @@ export const Day: Component<Props> = (props) => {
     const is =
       today.getFullYear() === year &&
       today.getMonth() === month &&
-      today.getDate() === props.day;
+      today.getDate() - 1 === props.day;
 
     return is
       ? {
