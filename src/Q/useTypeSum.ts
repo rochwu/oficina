@@ -1,44 +1,37 @@
 import {createMemo} from 'solid-js';
 import {store} from '../store';
-import {Ym} from '../types';
-import {ByTypes} from './types';
+import {Ym, ByTypes} from '../types';
 
 export const useTypeSum = (yms: Ym[]) => {
   const accessors = yms.map(({year, month}) =>
     createMemo(() => {
       const stored = store.calendar[year]?.[month] ?? {};
 
-      return Object.values(stored).reduce<ByTypes>(
-        (results, {type}) => {
-          results[type] += 1;
+      return Object.entries(stored).reduce((result, [day, {type}]) => {
+        if (Number.isNaN(day)) {
+          console.error('😱 corrupted save?!', year, month);
+        }
 
-          return results;
-        },
-        {
-          wfo: 0,
-          pto: 0,
-          holiday: 0,
-        },
-      );
+        result[type] ??= 0;
+        result[type] += 1;
+
+        return result;
+      }, {} as ByTypes);
     }),
   );
 
   return createMemo(() => {
-    return accessors.reduce<ByTypes>(
-      (result, accessor) => {
-        const {wfo, pto, holiday} = accessor();
+    return accessors.reduce((result, accessor) => {
+      const data = accessor();
 
-        result.wfo += wfo;
-        result.pto += pto;
-        result.holiday += holiday;
+      Object.keys(data).forEach((key) => {
+        const type = key as keyof typeof result;
 
-        return result;
-      },
-      {
-        wfo: 0,
-        pto: 0,
-        holiday: 0,
-      },
-    );
+        result[type] ??= 0;
+        result[type] += data[type];
+      });
+
+      return result;
+    }, {} as ByTypes);
   });
 };

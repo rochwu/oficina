@@ -5,7 +5,7 @@ import {MonthProvider, YearProvider} from '../Context';
 import {Day} from '../Day';
 import {vars} from '../css';
 import {Ym} from '../types';
-import {today} from '../constants';
+import {months, today} from '../constants';
 
 const Container = styled.div({
   display: 'flex',
@@ -34,21 +34,6 @@ const Name = styled.div({
   width: '100%',
   textAlign: 'center',
 });
-
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-].map((m) => m.substring(0, 4)); // Thought it'd be funny to be wonky 🤷‍♂️
 
 export const Month: Component<Props> = (props) => {
   let ref!: HTMLDivElement;

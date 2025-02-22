@@ -4,8 +4,9 @@ import {useMonth, useYear} from '../Context';
 import {vars} from '../css';
 import {store} from '../store';
 import {useEvents} from './useEvents';
-import {Tile} from './Tile';
-import {today} from '../constants';
+import {Marker} from './Marker';
+import {today, todayDataAttribute} from '../constants';
+import {DayType} from '../types';
 
 type Props = {
   day: number;
@@ -20,15 +21,15 @@ const Container = styled.div({
   aspectRatio: '1 / 1',
   width: vars.tile.size,
 
-  cursor: 'pointer',
-  // padding: '8px',
-
   '&[data-weekend]': {
     color: vars.weekend.color,
   },
 
+  cursor: 'pointer',
+
   '&[data-disabled="true"]': {
     pointerEvents: 'none',
+    cursor: 'none',
   },
 });
 
@@ -42,7 +43,8 @@ export const Day: Component<Props> = (props) => {
 
   const events = useEvents({year, month, day: props.day});
 
-  const type = () => store.calendar[year]?.[month]?.[props.day]?.type;
+  const type = () =>
+    store.calendar[year]?.[month]?.[props.day]?.type as DayType | undefined;
 
   const isInMonth = () => props.day >= 0; // NaN
 
@@ -60,7 +62,7 @@ export const Day: Component<Props> = (props) => {
 
     return is
       ? {
-          'data-today': '',
+          [todayDataAttribute]: '',
         }
       : {};
   };
@@ -73,9 +75,9 @@ export const Day: Component<Props> = (props) => {
         data-disabled={disabled()}
         data-weekend={isWeekend ? '' : undefined}
       >
-        <Tile type={type()} {...maybeToday()}>
+        <Marker type={type()} {...maybeToday()}>
           {props.day + 1}
-        </Tile>
+        </Marker>
       </Container>
     </Show>
   );
