@@ -2,12 +2,14 @@ export const today = new Date();
 
 export const todayDataAttribute = 'data-today';
 
-export const quarters = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
-  [10, 11, 0],
-];
+export const quarters = {
+  0: [1, 2, 3],
+  1: [4, 5, 6],
+  2: [7, 8, 9],
+  3: [10, 11, 0],
+} as const;
+
+export const removeDelayMs = 350; // Just felt right
 
 export const months = [
   'January',

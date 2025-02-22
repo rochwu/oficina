@@ -1,11 +1,11 @@
 import {createMemo} from 'solid-js';
-import {store} from '../store';
+import {calendar} from '../store';
 import {Ym, ByTypes} from '../types';
 
 export const useTypeSum = (yms: Ym[]) => {
   const accessors = yms.map(({year, month}) =>
     createMemo(() => {
-      const stored = store.calendar[year]?.[month] ?? {};
+      const stored = calendar[year]?.[month] ?? {};
 
       return Object.entries(stored).reduce((result, [day, {type}]) => {
         if (Number.isNaN(day)) {

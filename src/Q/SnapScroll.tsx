@@ -1,6 +1,6 @@
 import {Component, JSXElement} from 'solid-js';
 import {styled} from 'solid-styled-components';
-import {setIsScrolling} from '../store/store';
+import {setIsScrolling} from '../store';
 
 type Props = {
   children: JSXElement;

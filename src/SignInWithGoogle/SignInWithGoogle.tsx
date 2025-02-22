@@ -1,15 +1,15 @@
 import {
-  GoogleAuthProvider,
   getAuth,
   getRedirectResult,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithRedirect,
 } from 'firebase/auth';
 import {Component, createResource, onMount, Show} from 'solid-js';
-import {app} from '../firebase/app';
-import {setStore, store} from '../store';
 import {styled} from 'solid-styled-components';
 import {vars} from '../css';
+import {app} from '../firebase/app';
+import {setUser, user} from '../store';
 import './google.css';
 import html from './google.html?raw';
 
@@ -47,7 +47,7 @@ export const SignInWithGoogle: Component = () => {
       }
 
       const id = user.uid; // firebase unique Id
-      setStore('user', id);
+      setUser(id);
 
       if (import.meta.env.MODE !== 'production') {
         console.log(`✅ logged in ${id}`);
@@ -57,10 +57,8 @@ export const SignInWithGoogle: Component = () => {
 
   const [isNotRedirect] = createResource(() => getRedirectResult(auth));
 
-  const isNotUser = () => !store.user;
-
   return (
-    <Show when={isNotRedirect.state === 'ready' && isNotUser()}>
+    <Show when={isNotRedirect.state === 'ready' && !user()}>
       <Position innerHTML={html} onClick={signIn} />
     </Show>
   );

@@ -1,6 +1,7 @@
 import {JSX} from 'solid-js/jsx-runtime';
-import {isScrolling, remove, select} from '../store/store';
+import {isScrolling, remove, select} from '../store';
 import {Ymd} from '../types';
+import {removeDelayMs} from '../constants';
 
 export const useEvents = ({
   year,
@@ -23,7 +24,7 @@ export const useEvents = ({
       if (!isScrolling()) {
         remove({month, year, day});
       }
-    }, 500);
+    }, removeDelayMs);
   };
 
   const end = () => {
