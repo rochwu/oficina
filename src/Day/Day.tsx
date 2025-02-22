@@ -6,7 +6,6 @@ import {calendar, dayType} from '../store';
 import {useEvents} from './useEvents';
 import {Marker} from './Marker';
 import {today, todayDataAttribute} from '../constants';
-import {DayType} from '../types';
 
 type Props = {
   day: number;
@@ -33,6 +32,7 @@ const Container = styled.div({
   },
 });
 
+// Need this to hold a spot in the grid layout
 const Fallback = styled.div({});
 
 export const Day: Component<Props> = (props) => {
@@ -43,7 +43,15 @@ export const Day: Component<Props> = (props) => {
 
   const events = useEvents({year, month, day: props.day});
 
-  const type = () => calendar[year]?.[month]?.[props.day]?.type;
+  const type = () => {
+    const maybe = calendar[year]?.[month]?.[props.day]?.type;
+
+    if (!maybe || maybe === 'deleted') {
+      return;
+    }
+
+    return maybe;
+  };
 
   const isInMonth = () => props.day >= 0; // NaN
 
