@@ -46,7 +46,7 @@ export const select = (ymd: Ymd) => {
       updated: serverTimestamp(),
     });
   }).catch((error) => {
-    console.error('I fucked up selecting', error);
+    console.error('🤬 I fucked up selecting', error);
   });
 
   setCalendar(
@@ -66,7 +66,7 @@ export const remove = (ymd: Ymd) => {
       updated: serverTimestamp(),
     });
   }).catch((error) => {
-    console.error('I fucked up removing', error);
+    console.error('🤬 I fucked up removing', error);
   });
 
   const {year, month, day} = ymd;

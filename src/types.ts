@@ -20,3 +20,7 @@ export type Ymd = {
 };
 
 export type Ym = Pick<Ymd, 'year' | 'month'>;
+
+export type YmdDay = Ymd & {
+  value: Day;
+};
