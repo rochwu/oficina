@@ -18,7 +18,7 @@ export const {root, vars} = createCssVars(
       fontSize: '24px',
       color: base.white,
     },
-    tile: {
+    marker: {
       size: '48px', // Min accessible button size
     },
     weekend: {

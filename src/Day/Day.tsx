@@ -19,7 +19,7 @@ const Container = styled.div({
   alignItems: 'center',
 
   aspectRatio: '1 / 1',
-  width: vars.tile.size,
+  width: vars.marker.size,
 
   '&[data-weekend]': {
     color: vars.weekend.color,

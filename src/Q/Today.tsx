@@ -15,9 +15,10 @@ const Container = styled.div({
   bottom: 0,
   right: 0,
 
-  padding: vars.gap,
-
   cursor: 'pointer',
+
+  minHeight: vars.marker.size,
+  padding: '0 16px', // Whatever helps fit the 48px size uniformly in a corner
 
   textDecoration: vars.today.textDecoration,
   color: vars.today.color,
