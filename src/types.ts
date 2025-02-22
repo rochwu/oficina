@@ -1,6 +1,7 @@
 // `deleted` is a special type to help firestore handle merges easier
 export type RawDayType = 'wfo' | 'pto' | 'sick' | 'holiday' | 'deleted';
 
+// Most of the UI works with this type, only the DB connections has raw
 export type DayType = Exclude<RawDayType, 'deleted'>;
 
 export type Day = {
