@@ -16,6 +16,7 @@ export const TypeSelect = () => {
   const options: {label: string; value: DayType}[] = [
     {value: 'wfo', label: 'WFO'},
     {value: 'pto', label: 'PTO'},
+    {value: 'sick', label: 'Sick'},
     {value: 'holiday', label: 'Holiday'},
   ];
 

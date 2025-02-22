@@ -22,10 +22,10 @@ const Position = styled.div({
 /**
  * To SignInWithGoogle a fuckton of shit had to happen and I think I can refine it
  *
- * firebase authDomain is set to `rolando.ooo/oficina` which then we need
+ * Firebase authDomain is set to `rolando.ooo/oficina` which then we need
  * Cloudflare to redirect `rolando.ooo/oficina/__/auth/handler` to `dame-follow.firebaseapp.com/__/auth/handler`
  * Cloud Console OAuth to have `rolando.ooo/oficina/__/auth/handler` as an authorized redirect URL
- * Firebase Hosting to host the files, which I think we can remove
+ * Firebase Hosting to host the auth files, this is auto available by Firebase
  */
 export const SignInWithGoogle: Component = () => {
   const auth = getAuth(app);
@@ -39,7 +39,7 @@ export const SignInWithGoogle: Component = () => {
     // Listen for changes in authentication state
     onAuthStateChanged(auth, (user) => {
       if (!user) {
-        console.warn('🤔 user logged out');
+        console.warn('😳 no user');
         return;
       }
 

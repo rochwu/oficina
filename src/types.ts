@@ -1,8 +1,10 @@
-export type DayType = 'wfo' | 'pto' | 'holiday';
+export type DayType = 'wfo' | 'pto' | 'sick' | 'holiday';
 
 export type Day = {
   type: DayType;
 };
+
+export type ByTypes = Record<DayType, number>;
 
 export type Month = Record<number, Day>;
 

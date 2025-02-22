@@ -2,12 +2,15 @@ export const createCssVars = <
   Styles extends Record<string, any>,
   MoreStyles extends Record<string, any> | {},
 >(
+  config: {namespace: string},
   styles: Styles,
   /**
    * Let us compose styles based on previously defined CSS variables
    */
   composer?: (styles: Styles) => MoreStyles,
 ) => {
+  const {namespace} = config;
+
   // Record of CSS variable and initial value, spread this at :root to register
   const root: Record<string, string> = {};
 
@@ -26,7 +29,7 @@ export const createCssVars = <
       if (typeof value === 'object') {
         proxies[prop] = proxify(value, newPath);
       } else {
-        root[`--${newPath}`] = value;
+        root[`--${namespace}-${newPath}`] = value;
       }
     }
 
@@ -38,7 +41,7 @@ export const createCssVars = <
           return proxies[prop];
         }
 
-        return `var(--${getName(prop)})`;
+        return `var(--${namespace}-${getName(prop)})`;
       },
       // Sets the value of the CSS variable for super easy app wide changes
       set(target, prop: string, newValue: any) {

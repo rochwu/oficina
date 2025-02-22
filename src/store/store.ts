@@ -3,6 +3,7 @@ import {createStore, produce} from 'solid-js/store';
 import {Calendar, Day, DayType, Ymd} from '../types';
 import {doc, runTransaction, serverTimestamp} from 'firebase/firestore';
 import {db} from '../firebase';
+import {createSignal} from 'solid-js';
 
 type State = {
   type: DayType;
@@ -15,6 +16,8 @@ export const [store, setStore] = createStore<State>({
   calendar: {},
   user: '',
 });
+
+export const [isScrolling, setIsScrolling] = createSignal(false);
 
 export const changeDay =
   (calendar: Calendar) =>

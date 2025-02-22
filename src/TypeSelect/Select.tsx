@@ -49,7 +49,15 @@ export const Select: Component<SelectProps> = (props) => {
       itemComponent={(props) => (
         <Base.Item item={props.item} class="select__item">
           <Base.ItemLabel class="select__itemlabel">
-            {props.item.rawValue.label}
+            <Selected>
+              {props.item.rawValue.label}
+              <Hint
+                style={{
+                  'background-color':
+                    vars[props.item.rawValue.value as DayType].backgroundColor,
+                }}
+              />
+            </Selected>
           </Base.ItemLabel>
           {/* <Component.ItemIndicator class="select__item-indicator">
               x

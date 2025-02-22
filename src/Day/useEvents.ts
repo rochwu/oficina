@@ -1,5 +1,5 @@
 import {JSX} from 'solid-js/jsx-runtime';
-import {remove, select} from '../store/store';
+import {isScrolling, remove, select} from '../store/store';
 import {Ymd} from '../types';
 
 export const useEvents = ({
@@ -19,7 +19,10 @@ export const useEvents = ({
     stopSave = false;
     timeout = window.setTimeout(() => {
       stopSave = true;
-      remove({month, year, day});
+
+      if (!isScrolling()) {
+        remove({month, year, day});
+      }
     }, 500);
   };
 
@@ -28,7 +31,9 @@ export const useEvents = ({
     reset();
 
     if (!stop) {
-      select({month, year, day});
+      if (!isScrolling()) {
+        select({month, year, day});
+      }
     }
   };
 

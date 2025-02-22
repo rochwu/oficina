@@ -89,11 +89,15 @@
   opacity: 0.5;
   pointer-events: none;
 }
+
 .select__item[data-highlighted] {
-  background-color: #deb887;
+  background-color: var(--ofcn-backgroundColor);
+  color: var(--ofcn-color);
 }
+
 .select__item:active {
-  background-color: #deb887;
+  background-color: var(--ofcn-backgroundColor);
+  color: var(--ofcn-color);
 }
 
 .select__section {
@@ -110,6 +114,7 @@
 }
 .select__itemlabel {
   width: 100%;
+  text-align: center;
 }
 
 @keyframes contentShow {
