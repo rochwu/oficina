@@ -12,6 +12,10 @@ export const useTypeSum = (yms: Ym[]) => {
           console.error('😱 corrupted save?!', year, month);
         }
 
+        if (type === 'deleted') {
+          return result;
+        }
+
         result[type] ??= 0;
         result[type] += 1;
 

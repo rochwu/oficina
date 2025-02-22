@@ -1,3 +1,3 @@
 export * from './calendar';
-export * from './load';
+export * from './onLoad';
 export * from './signals';

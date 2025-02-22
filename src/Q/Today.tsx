@@ -28,8 +28,6 @@ export const Today: Component<Props> = () => {
   const go = () => {
     const el = document.querySelector(`[${todayDataAttribute}]`);
 
-    console.log(el);
-
     el?.scrollIntoView({block: 'center'});
   };
 

@@ -1,13 +1,13 @@
-import {Component, createEffect, For} from 'solid-js';
+import {Component, createEffect, For, onCleanup} from 'solid-js';
 import {styled} from 'solid-styled-components';
 import {Month} from '../Month';
 import {Rto} from '../Rto';
 import {quarters} from '../constants';
-import {load, user} from '../store';
+import {onLoad, user} from '../store';
 import {Ymd} from '../types';
-import {useTypeSum} from './useTypeSum';
 import {SnapScroll} from './SnapScroll';
 import {Today} from './Today';
+import {useTypeSum} from './useTypeSum';
 
 type Props = {
   /**
@@ -36,11 +36,16 @@ const getYms = ({year, quarter}: Props) => {
 
 export const Q: Component<Props> = (props) => {
   const yms = getYms(props);
+  let unsub = () => {};
 
   createEffect(() => {
+    unsub();
+
     if (user()) {
-      load(yms);
+      unsub = onLoad(yms);
     }
+
+    onCleanup(unsub);
   });
 
   const typeSum = useTypeSum(yms);

@@ -1,7 +1,7 @@
 import {createStore, produce} from 'solid-js/store';
 import {makePersisted} from '@solid-primitives/storage';
 
-import {Calendar, Day, DayType, Ymd} from '../types';
+import {Calendar, Day, RawDayType, Ymd} from '../types';
 import {doc, runTransaction, serverTimestamp} from 'firebase/firestore';
 import {db} from '../firebase';
 import {dayType, user} from './signals';
@@ -46,7 +46,7 @@ export const select = (ymd: Ymd) => {
       updated: serverTimestamp(),
     });
   }).catch((error) => {
-    console.error('I fucked up selecting', error);
+    console.error('🤬 I fucked up selecting', error);
   });
 
   setCalendar(
@@ -66,7 +66,7 @@ export const remove = (ymd: Ymd) => {
       updated: serverTimestamp(),
     });
   }).catch((error) => {
-    console.error('I fucked up removing', error);
+    console.error('🤬 I fucked up removing', error);
   });
 
   const {year, month, day} = ymd;

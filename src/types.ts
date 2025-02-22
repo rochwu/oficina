@@ -1,8 +1,10 @@
 // `deleted` is a special type to help firestore handle merges easier
-export type DayType = 'wfo' | 'pto' | 'sick' | 'holiday' | 'deleted';
+export type RawDayType = 'wfo' | 'pto' | 'sick' | 'holiday' | 'deleted';
+
+export type DayType = Exclude<RawDayType, 'deleted'>;
 
 export type Day = {
-  type: DayType;
+  type: RawDayType;
 };
 
 export type ByTypes = Record<DayType, number>;
@@ -20,3 +22,7 @@ export type Ymd = {
 };
 
 export type Ym = Pick<Ymd, 'year' | 'month'>;
+
+export type YmdDay = Ymd & {
+  value: Day;
+};
