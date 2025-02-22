@@ -1,5 +1,3 @@
-export const today = new Date();
-
 export const todayDataAttribute = 'data-today';
 
 export const quarters = {

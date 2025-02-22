@@ -2,10 +2,10 @@ import {Component, Show} from 'solid-js';
 import {styled} from 'solid-styled-components';
 import {useMonth, useYear} from '../Context';
 import {vars} from '../css';
-import {calendar, dayType, getDayType} from '../store';
+import {dayType, getDayType, today} from '../store';
 import {useEvents} from './useEvents';
 import {Marker} from './Marker';
-import {today, todayDataAttribute} from '../constants';
+import {todayDataAttribute} from '../constants';
 
 type Props = {
   day: number;
@@ -56,10 +56,12 @@ export const Day: Component<Props> = (props) => {
   };
 
   const maybeToday = () => {
+    const date = today();
+
     const is =
-      today.getFullYear() === year &&
-      today.getMonth() === month &&
-      today.getDate() - 1 === props.day;
+      date.getFullYear() === year &&
+      date.getMonth() === month &&
+      date.getDate() - 1 === props.day;
 
     return is
       ? {

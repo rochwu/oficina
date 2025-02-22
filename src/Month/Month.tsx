@@ -5,7 +5,8 @@ import {MonthProvider, YearProvider} from '../Context';
 import {Day} from '../Day';
 import {vars} from '../css';
 import {Ym} from '../types';
-import {months, today} from '../constants';
+import {months} from '../constants';
+import {today} from '../store';
 
 const Container = styled.div({
   display: 'flex',
@@ -44,7 +45,7 @@ export const Month: Component<Props> = (props) => {
   const tiles = Array.from({length: firstWeekday + days});
 
   onMount(() => {
-    if (today.getMonth() === props.month) {
+    if (today().getMonth() === props.month) {
       ref.scrollIntoView({behavior: 'instant'});
     }
   });

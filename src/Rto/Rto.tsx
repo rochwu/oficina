@@ -1,11 +1,11 @@
 import {Component, createMemo} from 'solid-js';
 import {styled} from 'solid-styled-components';
-import {today} from '../constants';
 import {vars} from '../css';
 import {getWeekdays, getWeekdaysRemaining} from '../date';
 import {ByTypes, Ym} from '../types';
 import {Pill} from './Pill';
 import {Tracker} from './Tracker';
+import {today} from '../store';
 
 type Props = {
   types: ByTypes;
@@ -43,7 +43,7 @@ export const Rto: Component<Props> = (props) => {
       wfo,
       required,
       missing: Math.max(required - wfo, 0),
-      possible: getWeekdaysRemaining({from: today, to: props.yms.at(-1)!}),
+      possible: getWeekdaysRemaining({from: today(), to: props.yms.at(-1)!}),
       percent: getPercent(wfo, total),
     };
   });

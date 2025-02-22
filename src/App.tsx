@@ -3,8 +3,9 @@ import {SignInWithGoogle} from './SignInWithGoogle';
 import {styled} from 'solid-styled-components';
 import {GlobalStyles} from './css';
 import {TypeSelect} from './TypeSelect';
-import {quarters, today} from './constants';
+import {quarters} from './constants';
 import {Q} from './Q';
+import {today} from './store';
 
 const Container = styled.div({
   display: 'flex',
@@ -34,7 +35,10 @@ export const App: Component = () => {
     <>
       <GlobalStyles />
       <Container>
-        <Q quarter={getQuarter(today.getMonth())} year={today.getFullYear()} />
+        <Q
+          quarter={getQuarter(today().getMonth())}
+          year={today().getFullYear()}
+        />
         <TypeSelect />
         <SignInWithGoogle />
       </Container>
