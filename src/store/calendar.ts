@@ -1,23 +1,12 @@
 import {createStore, produce} from 'solid-js/store';
+import {makePersisted} from '@solid-primitives/storage';
 
 import {Calendar, Day, DayType, Ymd} from '../types';
 import {doc, runTransaction, serverTimestamp} from 'firebase/firestore';
 import {db} from '../firebase';
-import {createSignal} from 'solid-js';
+import {dayType, user} from './signals';
 
-type State = {
-  type: DayType;
-  calendar: Calendar;
-  user: string;
-};
-
-export const [store, setStore] = createStore<State>({
-  type: 'wfo',
-  calendar: {},
-  user: '',
-});
-
-export const [isScrolling, setIsScrolling] = createSignal(false);
+export const [calendar, setCalendar] = makePersisted(createStore<Calendar>({}));
 
 export const changeDay =
   (calendar: Calendar) =>
@@ -31,7 +20,7 @@ const getDayRef = (ymd: Ymd) => {
   return doc(
     db,
     'calendars',
-    store.user,
+    user(),
     'years',
     ymd.year.toString(),
     'months',
@@ -43,8 +32,9 @@ const getDayRef = (ymd: Ymd) => {
 
 export const select = (ymd: Ymd) => {
   const {year, month, day} = ymd;
+  const type = dayType();
 
-  if (store.calendar[year]?.[month]?.[day]?.type === store.type) {
+  if (calendar[year]?.[month]?.[day]?.type === type) {
     return;
   }
 
@@ -52,18 +42,17 @@ export const select = (ymd: Ymd) => {
     const dayRef = getDayRef(ymd);
 
     transaction.set(dayRef, {
-      type: store.type,
+      type,
       updated: serverTimestamp(),
     });
   }).catch((error) => {
     console.error('I fucked up selecting', error);
   });
 
-  setStore(
-    'calendar',
+  setCalendar(
     produce((calendar) => {
       // TODO: Add inability to replace not your type
-      changeDay(calendar)(ymd, {type: store.type});
+      changeDay(calendar)(ymd, {type: dayType()});
     }),
   );
 };
@@ -81,8 +70,7 @@ export const remove = (ymd: Ymd) => {
 
   const {year, month, day} = ymd;
 
-  setStore(
-    'calendar',
+  setCalendar(
     produce((calendar) => {
       if (calendar[year]?.[month]?.[day]) {
         // TODO: Add inability to remove not your types

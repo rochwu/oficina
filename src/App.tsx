@@ -20,8 +20,13 @@ const Container = styled.div({
   width: '100%',
 });
 
+// I did something extra to be type safe, except getMonth() isn't type 0-11
 const getQuarter = (month: number) => {
-  return quarters.findIndex((quarter) => quarter.find((m) => m === month));
+  const keys = Object.keys(quarters) as unknown as (keyof typeof quarters)[];
+
+  return keys.find((key) => {
+    return quarters[key].some((m) => m === month);
+  })!;
 };
 
 export const App: Component = () => {

@@ -49,12 +49,16 @@ export const Month: Component<Props> = (props) => {
     }
   });
 
+  const name = () => {
+    return `${months[props.month]}`;
+  };
+
   return (
     <YearProvider year={props.year}>
       <MonthProvider month={props.month}>
         <Container ref={ref}>
           <Grid>
-            <Name>{months[props.month]}</Name>
+            <Name>{name()}</Name>
             <Index each={tiles}>
               {(_, index) => {
                 let day = index - firstWeekday;
