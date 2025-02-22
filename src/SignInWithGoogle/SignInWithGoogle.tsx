@@ -17,6 +17,7 @@ const Position = styled.div({
   position: 'absolute',
   top: vars.gap,
   right: vars.gap,
+  padding: vars.gap, // This luckily makes it fit at the select
 });
 
 /**
@@ -26,6 +27,8 @@ const Position = styled.div({
  * Cloudflare to redirect `rolando.ooo/oficina/__/auth/handler` to `dame-follow.firebaseapp.com/__/auth/handler`
  * Cloud Console OAuth to have `rolando.ooo/oficina/__/auth/handler` as an authorized redirect URL
  * Firebase Hosting to host the auth files, this is auto available by Firebase
+ *
+ * Get the button html and css https://developers.google.com/identity/branding-guidelines
  */
 export const SignInWithGoogle: Component = () => {
   const auth = getAuth(app);
