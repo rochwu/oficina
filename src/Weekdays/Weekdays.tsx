@@ -6,8 +6,8 @@ const Container = styled.div({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  height: vars.tile.size,
-  width: vars.tile.size,
+  height: vars.marker.size,
+  width: vars.marker.size,
 });
 
 const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
