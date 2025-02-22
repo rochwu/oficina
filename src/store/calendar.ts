@@ -1,7 +1,7 @@
 import {createStore, produce} from 'solid-js/store';
 import {makePersisted} from '@solid-primitives/storage';
 
-import {Calendar, Day, DayType, Ymd} from '../types';
+import {Calendar, Day, RawDayType, Ymd} from '../types';
 import {doc, runTransaction, serverTimestamp} from 'firebase/firestore';
 import {db} from '../firebase';
 import {dayType, user} from './signals';
