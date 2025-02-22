@@ -8,8 +8,8 @@ export const useTypeSum = (yms: Ym[]) => {
       const stored = calendar[year]?.[month] ?? {};
 
       return Object.entries(stored).reduce((result, [day, {type}]) => {
-        if (Number.isNaN(day)) {
-          console.error('😱 corrupted save?!', year, month);
+        if (Number.isNaN(day) || !type) {
+          console.error('😱 corrupted save?!', year, month, day, type);
         }
 
         if (type === 'deleted') {

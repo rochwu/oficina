@@ -1,7 +1,7 @@
 import {styled} from 'solid-styled-components';
 import {vars} from '../css';
 import {dayType, setDayType} from '../store';
-import {RawDayType} from '../types';
+import {DayType} from '../types';
 import {Select, SelectProps} from './Select';
 
 const Container = styled.div({
@@ -13,7 +13,7 @@ const Container = styled.div({
 });
 
 export const TypeSelect = () => {
-  const options: {label: string; value: RawDayType}[] = [
+  const options: {label: string; value: DayType}[] = [
     {value: 'wfo', label: 'WFO'},
     {value: 'pto', label: 'PTO'},
     {value: 'sick', label: 'Sick'},
@@ -24,7 +24,7 @@ export const TypeSelect = () => {
     const next = option?.value;
 
     if (next) {
-      setDayType(next as RawDayType);
+      setDayType(next as DayType);
     }
   };
 

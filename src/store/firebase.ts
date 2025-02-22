@@ -1,6 +1,6 @@
-import {collection, DocumentData, QuerySnapshot} from 'firebase/firestore';
+import {collection, doc, DocumentData, QuerySnapshot} from 'firebase/firestore';
 import {db} from '../firebase';
-import {Day, Ym, YmdDay} from '../types';
+import {Day, Ym, Ymd, YmdDay} from '../types';
 import {user} from './signals';
 
 export const getDaysRef = ({year, month}: Ym) => {
@@ -14,6 +14,10 @@ export const getDaysRef = ({year, month}: Ym) => {
     month.toString(),
     'days',
   );
+};
+
+export const getDayRef = ({day, ...ym}: Ymd) => {
+  return doc(getDaysRef(ym), day.toString());
 };
 
 export const parseYmdDays = ({

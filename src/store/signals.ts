@@ -1,5 +1,5 @@
 import {createSignal} from 'solid-js';
-import {RawDayType} from '../types';
+import {DayType} from '../types';
 
 /**
  * These are signals cuz I didn't want to store user or dayType, I wanted them to reset
@@ -11,4 +11,4 @@ export const [isScrolling, setIsScrolling] = createSignal(false);
 
 export const [user, setUser] = createSignal('');
 
-export const [dayType, setDayType] = createSignal<RawDayType>('wfo');
+export const [dayType, setDayType] = createSignal<DayType>('wfo');

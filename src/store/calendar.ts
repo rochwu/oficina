@@ -1,10 +1,11 @@
-import {createStore, produce} from 'solid-js/store';
 import {makePersisted} from '@solid-primitives/storage';
+import {createStore, produce} from 'solid-js/store';
 
-import {Calendar, Day, RawDayType, Ymd} from '../types';
-import {doc, runTransaction, serverTimestamp} from 'firebase/firestore';
+import {runTransaction, serverTimestamp} from 'firebase/firestore';
 import {db} from '../firebase';
-import {dayType, user} from './signals';
+import {Calendar, Day, Ymd} from '../types';
+import {getDayRef} from './firebase';
+import {dayType} from './signals';
 
 export const [calendar, setCalendar] = makePersisted(createStore<Calendar>({}));
 
@@ -15,20 +16,6 @@ export const changeDay =
     calendar[year][month] ??= {};
     calendar[year][month][day] = change;
   };
-
-const getDayRef = (ymd: Ymd) => {
-  return doc(
-    db,
-    'calendars',
-    user(),
-    'years',
-    ymd.year.toString(),
-    'months',
-    ymd.month.toString(),
-    'days',
-    ymd.day.toString(),
-  );
-};
 
 export const select = (ymd: Ymd) => {
   const {year, month, day} = ymd;
@@ -51,13 +38,21 @@ export const select = (ymd: Ymd) => {
 
   setCalendar(
     produce((calendar) => {
-      // TODO: Add inability to replace not your type
       changeDay(calendar)(ymd, {type: dayType()});
     }),
   );
 };
 
 export const remove = (ymd: Ymd) => {
+  const {year, month, day} = ymd;
+
+  const type = calendar[year]?.[month]?.[day]?.type;
+
+  if (!type || type === 'deleted') {
+    console.error('🤷‍♂️ deleting nothing, how?!');
+    return;
+  }
+
   runTransaction(db, async (transaction) => {
     const dayRef = getDayRef(ymd);
 
@@ -69,14 +64,22 @@ export const remove = (ymd: Ymd) => {
     console.error('🤬 I fucked up removing', error);
   });
 
-  const {year, month, day} = ymd;
-
   setCalendar(
     produce((calendar) => {
-      if (calendar[year]?.[month]?.[day]) {
-        // TODO: Add inability to remove not your types
-        delete calendar[year][month][day];
-      }
+      changeDay(calendar)(ymd, {type: 'deleted'});
     }),
   );
+};
+
+/**
+ * Gets DayType, not RawDayType
+ */
+export const getDayType = ({year, month, day}: Ymd) => {
+  const maybe = calendar[year]?.[month]?.[day]?.type;
+
+  if (!maybe || maybe === 'deleted') {
+    return;
+  }
+
+  return maybe;
 };
