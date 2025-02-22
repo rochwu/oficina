@@ -5,7 +5,7 @@ import {runTransaction, serverTimestamp} from 'firebase/firestore';
 import {db} from '../firebase';
 import {Calendar, Day, Ymd} from '../types';
 import {getDayRef} from './firebase';
-import {dayType} from './signals';
+import {dayType, user} from './signals';
 
 export const [calendar, setCalendar] = makePersisted(createStore<Calendar>({}));
 
@@ -24,16 +24,18 @@ export const select = (ymd: Ymd) => {
     return;
   }
 
-  runTransaction(db, async (transaction) => {
-    const dayRef = getDayRef(ymd);
+  if (user()) {
+    runTransaction(db, async (transaction) => {
+      const dayRef = getDayRef(ymd);
 
-    transaction.set(dayRef, {
-      type,
-      updated: serverTimestamp(),
+      transaction.set(dayRef, {
+        type,
+        updated: serverTimestamp(),
+      });
+    }).catch((error) => {
+      console.error('🤬 I fucked up selecting', error);
     });
-  }).catch((error) => {
-    console.error('🤬 I fucked up selecting', error);
-  });
+  }
 
   setCalendar(
     produce((calendar) => {
@@ -50,16 +52,18 @@ export const remove = (ymd: Ymd) => {
     return;
   }
 
-  runTransaction(db, async (transaction) => {
-    const dayRef = getDayRef(ymd);
+  if (user()) {
+    runTransaction(db, async (transaction) => {
+      const dayRef = getDayRef(ymd);
 
-    transaction.set(dayRef, {
-      type: 'deleted',
-      updated: serverTimestamp(),
+      transaction.set(dayRef, {
+        type: 'deleted',
+        updated: serverTimestamp(),
+      });
+    }).catch((error) => {
+      console.error('🤬 I fucked up removing', error);
     });
-  }).catch((error) => {
-    console.error('🤬 I fucked up removing', error);
-  });
+  }
 
   setCalendar(
     produce((calendar) => {

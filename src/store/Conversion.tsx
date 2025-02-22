@@ -3,7 +3,9 @@ import {user} from './signals';
 import {db} from '../firebase';
 
 const convert = async () => {
-  if (!user()) {
+  const key = user();
+
+  if (!key) {
     return;
   }
 
@@ -15,7 +17,7 @@ const convert = async () => {
     const ref = collection(
       db,
       'calendars',
-      user(),
+      key,
       'years',
       '2025',
       'months',
