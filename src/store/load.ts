@@ -26,13 +26,10 @@ export const load = async (yms: Ym[]) => {
     const ymds: (Ymd & {data: Day})[] = [];
 
     docs.forEach((doc) => {
-      const {type} = doc.data() as Partial<Day>; // It has no type if deleted
+      const {type} = doc.data() as Day; // It has no type if deleted
       const day = Number(doc.id); // the key of the `days` collection
 
-      if (type) {
-        // Only storing type, even when FS has timestamps to relax localStorage
-        ymds.push({year, month, day, data: {type}});
-      }
+      ymds.push({year, month, day, data: {type}});
     });
 
     return ymds;

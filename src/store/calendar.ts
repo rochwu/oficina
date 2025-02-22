@@ -62,6 +62,7 @@ export const remove = (ymd: Ymd) => {
     const dayRef = getDayRef(ymd);
 
     transaction.set(dayRef, {
+      type: 'deleted',
       updated: serverTimestamp(),
     });
   }).catch((error) => {
