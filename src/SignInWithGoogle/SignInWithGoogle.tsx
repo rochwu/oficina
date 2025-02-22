@@ -20,6 +20,26 @@ const Position = styled.div({
   padding: vars.gap, // This luckily makes it fit at the select
 });
 
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+// Listen for changes in authentication state
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    console.warn('😳 no user');
+    return;
+  }
+
+  const id = user.uid; // firebase unique Id
+  setUser(id);
+
+  if (import.meta.env.MODE !== 'production') {
+    console.log(`✅ logged in ${id}`);
+  }
+});
+
+const [isNotRedirect] = createResource(() => getRedirectResult(auth));
+
 /**
  * To SignInWithGoogle a fuckton of shit had to happen and I think I can refine it
  *
@@ -31,31 +51,9 @@ const Position = styled.div({
  * Get the button html and css https://developers.google.com/identity/branding-guidelines
  */
 export const SignInWithGoogle: Component = () => {
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-
   const signIn = () => {
     signInWithRedirect(auth, provider);
   };
-
-  onMount(async () => {
-    // Listen for changes in authentication state
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        console.warn('😳 no user');
-        return;
-      }
-
-      const id = user.uid; // firebase unique Id
-      setUser(id);
-
-      if (import.meta.env.MODE !== 'production') {
-        console.log(`✅ logged in ${id}`);
-      }
-    });
-  });
-
-  const [isNotRedirect] = createResource(() => getRedirectResult(auth));
 
   return (
     <Show when={isNotRedirect.state === 'ready' && !user()}>
