@@ -35,7 +35,7 @@ export const Today: Component<Props> = () => {
 
   return (
     <Container role="button" onClick={go}>
-      today
+      tdy
     </Container>
   );
 };
