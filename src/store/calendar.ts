@@ -10,18 +10,17 @@ import {dayType} from './signals';
 export const [calendar, setCalendar] = makePersisted(createStore<Calendar>({}));
 
 export const changeDay =
-  (calendar: Calendar) =>
+  (draft: Calendar) =>
   ({year, month, day}: Ymd, change: Day) => {
-    calendar[year] ??= {};
-    calendar[year][month] ??= {};
-    calendar[year][month][day] = change;
+    draft[year] ??= {};
+    draft[year][month] ??= {};
+    draft[year][month][day] = change;
   };
 
 export const select = (ymd: Ymd) => {
-  const {year, month, day} = ymd;
   const type = dayType();
 
-  if (calendar[year]?.[month]?.[day]?.type === type) {
+  if (getDay(ymd)?.type === type) {
     return;
   }
 
@@ -44,9 +43,7 @@ export const select = (ymd: Ymd) => {
 };
 
 export const remove = (ymd: Ymd) => {
-  const {year, month, day} = ymd;
-
-  const type = calendar[year]?.[month]?.[day]?.type;
+  const type = getDay(ymd)?.type;
 
   if (!type || type === 'deleted') {
     console.error('🤷‍♂️ deleting nothing, how?!');
@@ -71,11 +68,15 @@ export const remove = (ymd: Ymd) => {
   );
 };
 
+export const getDay = ({year, month, day}: Ymd) => {
+  return calendar[year]?.[month]?.[day];
+};
+
 /**
  * Gets DayType, not RawDayType
  */
-export const getDayType = ({year, month, day}: Ymd) => {
-  const maybe = calendar[year]?.[month]?.[day]?.type;
+export const getDayType = (ymd: Ymd) => {
+  const maybe = getDay(ymd)?.type;
 
   if (!maybe || maybe === 'deleted') {
     return;

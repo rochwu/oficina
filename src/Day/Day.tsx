@@ -2,7 +2,7 @@ import {Component, Show} from 'solid-js';
 import {styled} from 'solid-styled-components';
 import {useMonth, useYear} from '../Context';
 import {vars} from '../css';
-import {calendar, dayType} from '../store';
+import {calendar, dayType, getDayType} from '../store';
 import {useEvents} from './useEvents';
 import {Marker} from './Marker';
 import {today, todayDataAttribute} from '../constants';
@@ -41,17 +41,11 @@ export const Day: Component<Props> = (props) => {
 
   const isWeekend = props.weekday === 0 || props.weekday === 6;
 
-  const events = useEvents({year, month, day: props.day});
+  const ymd = () => ({year, month, day: props.day});
 
-  const type = () => {
-    const maybe = calendar[year]?.[month]?.[props.day]?.type;
+  const events = useEvents(ymd());
 
-    if (!maybe || maybe === 'deleted') {
-      return;
-    }
-
-    return maybe;
-  };
+  const type = () => getDayType(ymd());
 
   const isInMonth = () => props.day >= 0; // NaN
 
