@@ -1,13 +1,19 @@
 import {makePersisted} from '@solid-primitives/storage';
+import {runTransaction, serverTimestamp} from 'firebase/firestore';
 import {createStore, produce} from 'solid-js/store';
 
-import {runTransaction, serverTimestamp} from 'firebase/firestore';
 import {db} from '../firebase';
-import {Calendar, Day, Ymd} from '../types';
+import type {Calendar, Day, Ymd} from '../types';
 import {getDayRef} from './firebase';
+import {indexDb} from './indexDb';
 import {dayType, user} from './signals';
 
-export const [calendar, setCalendar] = makePersisted(createStore<Calendar>({}));
+export const [calendar, setCalendar] = makePersisted(
+  createStore<Calendar>({}),
+  {
+    storage: indexDb,
+  },
+);
 
 export const changeDay =
   (draft: Calendar) =>

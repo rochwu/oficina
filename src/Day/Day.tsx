@@ -1,10 +1,12 @@
-import {Component, Show} from 'solid-js';
+import type {Component} from 'solid-js';
+import {Show} from 'solid-js';
 import {styled} from 'solid-styled-components';
+
 import {useMonth, useYear} from '../Context';
 import {vars} from '../css';
 import {dayType, getDayType, today} from '../store';
-import {useEvents} from './useEvents';
 import {Marker} from './Marker';
+import {useEvents} from './useEvents';
 
 type Props = {
   day: number;

@@ -1,6 +1,7 @@
 import {createMemo, createSignal} from 'solid-js';
+
 import {getQuarters} from '../date/quarters';
-import {ByTypes, Quarter} from '../types';
+import type {ByTypes, Quarter} from '../types';
 import {today} from './today';
 
 // Only wake up `qs` if actual values changes

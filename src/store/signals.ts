@@ -1,5 +1,6 @@
 import {createSignal} from 'solid-js';
-import {DayType} from '../types';
+
+import type {DayType} from '../types';
 
 /**
  * These are signals cuz I didn't want to store user or dayType, I wanted them to reset

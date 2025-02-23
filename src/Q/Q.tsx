@@ -1,10 +1,12 @@
-import {Component, createEffect, For, Show} from 'solid-js';
+import type {Component} from 'solid-js';
+import {createEffect, For, Show} from 'solid-js';
 import {produce} from 'solid-js/store';
+
 import {QuarterProvider} from '../Context';
 import {Month} from '../Month';
 import {Rto} from '../Rto';
 import {setRtoByQ} from '../store/quarters';
-import {Quarter, Ym} from '../types';
+import type {Quarter, Ym} from '../types';
 import {useLoad} from './useLoad';
 import {useTypeSum} from './useTypeSum';
 

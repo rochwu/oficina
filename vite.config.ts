@@ -1,6 +1,7 @@
+import basicSsl from '@vitejs/plugin-basic-ssl';
+import visualizer from 'rollup-plugin-visualizer';
 import {defineConfig} from 'vite';
 import solidPlugin from 'vite-plugin-solid';
-import basicSsl from '@vitejs/plugin-basic-ssl';
 
 // import devtools from 'solid-devtools/vite';
 
@@ -14,6 +15,9 @@ export default defineConfig({
     // devtools(),
     solidPlugin(),
     basicSsl(),
+    visualizer({
+      open: true,
+    }),
   ],
   server: {
     // I don't know which config is it, but I can't firebase work if it isn't this host or port

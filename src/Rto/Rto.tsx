@@ -1,11 +1,13 @@
-import {Component, createMemo} from 'solid-js';
+import type {Component} from 'solid-js';
+import {createMemo} from 'solid-js';
 import {styled} from 'solid-styled-components';
+
 import {vars} from '../css';
 import {getWeekdays, getWeekdaysRemaining} from '../date';
-import {ByTypes, Ym} from '../types';
+import {today} from '../store';
+import type {ByTypes, Ym} from '../types';
 import {Possible} from './Possible';
 import {Tracker} from './Tracker';
-import {today} from '../store';
 
 type Props = {
   types: ByTypes;

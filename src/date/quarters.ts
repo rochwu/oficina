@@ -1,5 +1,5 @@
 import {quarters} from '../constants';
-import {Quarter, Qy, Ym} from '../types';
+import type {Quarter, Qy, Ym} from '../types';
 
 export const getQuarter = (month: number) => {
   // Without Number, it becomes a string, and the comparison at `getQuarters` fucks up

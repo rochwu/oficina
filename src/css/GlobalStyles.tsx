@@ -1,7 +1,8 @@
-import {createGlobalStyles} from 'solid-styled-components';
-import {root, vars} from './css';
-
 import 'normalize.css';
+
+import {createGlobalStyles} from 'solid-styled-components';
+
+import {root, vars} from './css';
 
 export const GlobalStyles = createGlobalStyles({
   ':root': root,

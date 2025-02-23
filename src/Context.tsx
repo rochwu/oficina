@@ -1,5 +1,7 @@
-import {Component, createContext, JSXElement, useContext} from 'solid-js';
-import {Quarter} from './types';
+import type {Component, JSXElement} from 'solid-js';
+import {createContext, useContext} from 'solid-js';
+
+import type {Quarter} from './types';
 
 const DayContext = createContext(NaN);
 const MonthContext = createContext(NaN);

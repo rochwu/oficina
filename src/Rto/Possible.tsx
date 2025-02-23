@@ -1,5 +1,6 @@
-import {Component, JSXElement} from 'solid-js';
+import type {Component, JSXElement} from 'solid-js';
 import {styled} from 'solid-styled-components';
+
 import {vars} from '../css';
 
 const Container = styled.div({

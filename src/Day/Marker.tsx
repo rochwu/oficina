@@ -1,8 +1,10 @@
-import {Component, JSXElement} from 'solid-js';
-import {styled, CSSAttribute} from 'solid-styled-components';
-import {DayType} from '../types';
-import {vars} from '../css';
+import type {Component, JSXElement} from 'solid-js';
+import type {CSSAttribute} from 'solid-styled-components';
+import {styled} from 'solid-styled-components';
+
 import {dayTypes} from '../constants';
+import {vars} from '../css';
+import type {DayType} from '../types';
 
 type Props = {
   type?: DayType;

@@ -1,6 +1,7 @@
 import {onSnapshot} from 'firebase/firestore';
 import {produce} from 'solid-js/store';
-import {Ym} from '../types';
+
+import type {Ym} from '../types';
 import {changeDay, setCalendar} from './calendar';
 import {getDaysRef, parseYmdDays} from './firebase';
 

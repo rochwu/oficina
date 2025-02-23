@@ -1,12 +1,14 @@
-import {Component, Index, JSX, onMount, splitProps} from 'solid-js';
+import type {Component, JSX} from 'solid-js';
+import {Index, onMount, splitProps} from 'solid-js';
 import {styled} from 'solid-styled-components';
-import {getDays, getFirstDayOfWeek} from '../date';
-import {MonthProvider, YearProvider} from '../Context';
-import {Day} from '../Day';
-import {vars} from '../css';
-import {Ym} from '../types';
+
 import {months} from '../constants';
+import {MonthProvider, YearProvider} from '../Context';
+import {vars} from '../css';
+import {getDays, getFirstDayOfWeek} from '../date';
+import {Day} from '../Day';
 import {today} from '../store';
+import type {Ym} from '../types';
 
 const Container = styled.div({
   display: 'flex',

@@ -1,5 +1,5 @@
 import {quarters} from '../constants';
-import {Qy} from '../types';
+import type {Qy} from '../types';
 
 export const getYms = ({year, quarter}: Qy) => {
   const months = quarters[quarter];

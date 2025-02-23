@@ -1,10 +1,11 @@
 import {createSignal} from 'solid-js';
 import {styled} from 'solid-styled-components';
+
 import {Q} from '../Q';
-import {qs} from '../store/quarters';
 import {SnapScroll} from './SnapScroll';
 import {Today} from './Today';
 import {useVisibleQ} from './useVisibleQ';
+import {qs} from '../store/quarters';
 
 const Container = styled.div({
   position: 'relative',

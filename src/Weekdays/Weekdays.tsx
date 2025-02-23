@@ -1,5 +1,7 @@
-import {Component, For, Index, Show} from 'solid-js';
+import type {Component} from 'solid-js';
+import {For} from 'solid-js';
 import {styled} from 'solid-styled-components';
+
 import {vars} from '../css';
 
 const Container = styled.div({
@@ -13,10 +15,10 @@ const Container = styled.div({
 const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
 const Day: Component<{day: string}> = (props) => {
-  const isWeekend = props.day === 'S';
+  const isWeekend = () => props.day === 'S';
 
   return (
-    <Container style={isWeekend ? {color: vars.weekend.color} : undefined}>
+    <Container style={isWeekend() ? {color: vars.weekend.color} : undefined}>
       {props.day}
     </Container>
   );

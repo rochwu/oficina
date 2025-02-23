@@ -1,6 +1,7 @@
 import {createMemo} from 'solid-js';
+
 import {calendar} from '../store';
-import {Ym, ByTypes} from '../types';
+import type {Ym, ByTypes} from '../types';
 
 export const useTypeSum = (yms: Ym[]) => {
   const accessors = yms.map(({year, month}) =>

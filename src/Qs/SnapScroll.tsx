@@ -1,5 +1,6 @@
-import {Component, JSXElement, onMount, Signal} from 'solid-js';
+import type {Component, JSXElement, Signal} from 'solid-js';
 import {styled} from 'solid-styled-components';
+
 import {setIsScrolling} from '../store';
 import {useIsSnapped} from './useIsSnapped';
 

@@ -1,6 +1,6 @@
+import type {Ym} from '../types';
 import {getDays} from './getDays';
 import {getFirstDayOfWeek} from './getFirstDayOfWeek';
-import {Ym} from '../types';
 
 export const getWeekdays = (ym: Ym) => {
   const firstDay = getFirstDayOfWeek(ym);

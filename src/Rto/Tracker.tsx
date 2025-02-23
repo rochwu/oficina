@@ -1,5 +1,6 @@
-import {Component} from 'solid-js';
+import type {Component} from 'solid-js';
 import {styled} from 'solid-styled-components';
+
 import {vars} from '../css';
 
 type Props = {

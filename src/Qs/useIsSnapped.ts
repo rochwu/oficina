@@ -1,4 +1,5 @@
-import {Accessor, onCleanup, onMount} from 'solid-js';
+import type {Accessor} from 'solid-js';
+import {onCleanup, onMount} from 'solid-js';
 
 /**
  * Stores snap points in case scroll snap finals, that I keep seeing in Chrome
