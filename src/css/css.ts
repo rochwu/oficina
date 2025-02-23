@@ -16,7 +16,7 @@ export const {root, vars} = createCssVars(
     today: {
       textDecoration: 'underline',
       fontSize: '24px',
-      color: base.white,
+      color: '#F4E1C1',
     },
     marker: {
       size: '48px', // Min accessible button size

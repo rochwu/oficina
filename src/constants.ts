@@ -1,4 +1,4 @@
-import {Quarter} from './types';
+import {DayType, Quarter} from './types';
 
 export const quarters = {
   0: [1, 2, 3],
@@ -23,3 +23,5 @@ export const months = [
   'November',
   'December',
 ].map((m) => m.substring(0, 4)); // Thought it'd be funny to be wonky 🤷‍♂️
+
+export const dayTypes: DayType[] = ['wfo', 'pto', 'sick', 'holiday'] as const;

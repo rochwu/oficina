@@ -1,7 +1,8 @@
-import {Component, JSX, JSXElement} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import {Component, JSXElement} from 'solid-js';
+import {styled, CSSAttribute} from 'solid-styled-components';
 import {DayType} from '../types';
 import {vars} from '../css';
+import {dayTypes} from '../constants';
 
 type Props = {
   type?: DayType;
@@ -20,26 +21,35 @@ const Container = styled.div({
   boxSizing: 'border-box',
 
   fontSize: vars.day.fontSize,
+
+  ...dayTypes.reduce(
+    (styles, type) => {
+      styles[`&[data-${type}]`] = {
+        backgroundColor: vars[type].backgroundColor,
+        color: vars[type].color,
+      };
+
+      return styles;
+    },
+    {} as Record<string, CSSAttribute>,
+  ),
+
   [`&[data-today]`]: {
     ...vars.today,
   },
 });
 
-export const getStyle = (type?: DayType): JSX.CSSProperties | undefined => {
-  // No marks on date
-  if (!type) {
-    return;
-  }
-
-  return {
-    'background-color': vars[type].backgroundColor,
-    color: vars[type].color,
-  };
+const getDataAttribute = (type?: DayType) => {
+  return type
+    ? {
+        [`data-${type}`]: '',
+      }
+    : {};
 };
 
 export const Marker: Component<Props> = (props) => {
   return (
-    <Container style={getStyle(props.type)} {...props}>
+    <Container {...getDataAttribute(props.type)} {...props}>
       {props.children}
     </Container>
   );
