@@ -1,7 +1,7 @@
 import {Component} from 'solid-js';
 import {styled} from 'solid-styled-components';
 import {vars} from '../css';
-import {todayDataAttribute} from '../constants';
+import {today} from '../store';
 
 type Props = {};
 
@@ -26,9 +26,12 @@ const Container = styled.div({
 
 export const Today: Component<Props> = () => {
   const go = () => {
-    const el = document.querySelector(`[${todayDataAttribute}]`);
+    const month = today().getMonth();
 
-    el?.scrollIntoView({block: 'center'});
+    // day > button > month
+    const el = document.querySelector(`[data-month="${month}"]`);
+
+    el?.scrollIntoView({block: 'center', inline: 'center', behavior: 'smooth'});
   };
 
   return (

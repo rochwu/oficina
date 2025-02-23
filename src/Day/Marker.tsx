@@ -2,7 +2,6 @@ import {Component, JSX, JSXElement} from 'solid-js';
 import {styled} from 'solid-styled-components';
 import {DayType} from '../types';
 import {vars} from '../css';
-import {todayDataAttribute} from '../constants';
 
 type Props = {
   type?: DayType;
@@ -21,7 +20,7 @@ const Container = styled.div({
   boxSizing: 'border-box',
 
   fontSize: vars.day.fontSize,
-  [`&[${todayDataAttribute}]`]: {
+  [`&[data-today]`]: {
     ...vars.today,
   },
 });

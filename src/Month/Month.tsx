@@ -1,4 +1,4 @@
-import {Component, Index, onMount} from 'solid-js';
+import {Component, Index, JSX, onMount, splitProps} from 'solid-js';
 import {styled} from 'solid-styled-components';
 import {getDays, getFirstDayOfWeek} from '../date';
 import {MonthProvider, YearProvider} from '../Context';
@@ -26,8 +26,6 @@ const Grid = styled.div({
   position: 'relative',
 });
 
-type Props = Ym;
-
 const Name = styled.div({
   textTransform: 'uppercase',
   position: 'absolute',
@@ -36,7 +34,11 @@ const Name = styled.div({
   textAlign: 'center',
 });
 
-export const Month: Component<Props> = (props) => {
+type Props = Ym & JSX.HTMLAttributes<HTMLDivElement>;
+
+export const Month: Component<Props> = (rawProps) => {
+  const [props, elProps] = splitProps(rawProps, ['year', 'month']);
+
   let ref!: HTMLDivElement;
 
   const firstWeekday = getFirstDayOfWeek(props);
@@ -57,7 +59,7 @@ export const Month: Component<Props> = (props) => {
   return (
     <YearProvider year={props.year}>
       <MonthProvider month={props.month}>
-        <Container ref={ref}>
+        <Container ref={ref} data-month={props.month} {...elProps}>
           <Grid>
             <Name>{name()}</Name>
             <Index each={tiles}>

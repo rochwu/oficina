@@ -15,11 +15,10 @@ export const GlobalStyles = createGlobalStyles({
 
     userSelect: 'none',
     '-webkit-user-select': 'none', // Safari
-    touchAction: 'none', // Stops gestures
 
     // Stops pull-to-refresh
     overflow: 'hidden',
-    overscrollBehavior: 'none',
+    overscrollBehavior: 'contain',
   },
 
   '#root': {

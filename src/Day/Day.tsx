@@ -5,7 +5,6 @@ import {vars} from '../css';
 import {dayType, getDayType, today} from '../store';
 import {useEvents} from './useEvents';
 import {Marker} from './Marker';
-import {todayDataAttribute} from '../constants';
 
 type Props = {
   day: number;
@@ -65,7 +64,7 @@ export const Day: Component<Props> = (props) => {
 
     return is
       ? {
-          [todayDataAttribute]: '',
+          'data-today': '',
         }
       : {};
   };

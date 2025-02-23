@@ -31,7 +31,7 @@ type Props = {
   end: JSXElement;
 };
 
-export const Pill: Component<Props> = (props) => {
+export const Possible: Component<Props> = (props) => {
   return (
     <Container>
       <Start>{props.start}</Start>

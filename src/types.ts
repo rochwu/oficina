@@ -27,3 +27,9 @@ export type Ym = Pick<Ymd, 'year' | 'month'>;
 export type YmdDay = Ymd & {
   value: Day;
 };
+
+export type Quarter = 0 | 1 | 2 | 3;
+
+export type Qy = {
+  quarter: Quarter;
+} & Pick<Ymd, 'year'>;

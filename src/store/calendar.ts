@@ -48,7 +48,6 @@ export const remove = (ymd: Ymd) => {
   const type = getDay(ymd)?.type;
 
   if (!type || type === 'deleted') {
-    console.error('🤷‍♂️ deleting nothing, how?!');
     return;
   }
 

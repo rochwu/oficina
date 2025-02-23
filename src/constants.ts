@@ -1,11 +1,11 @@
-export const todayDataAttribute = 'data-today';
+import {Quarter} from './types';
 
 export const quarters = {
   0: [1, 2, 3],
   1: [4, 5, 6],
   2: [7, 8, 9],
   3: [10, 11, 0],
-} as const;
+} satisfies Record<Quarter, [number, number, number]>;
 
 export const removeDelayMs = 350; // Just felt right
 
