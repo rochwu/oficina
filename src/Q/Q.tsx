@@ -5,7 +5,7 @@ import {produce} from 'solid-js/store';
 import {QuarterProvider} from '../Context';
 import {Month} from '../Month';
 import {Rto} from '../Rto';
-import {setRtoByQ} from '../store/quarters';
+import {setRtoByQ} from '../store';
 import type {Quarter, Ym} from '../types';
 import {useLoad} from './useLoad';
 import {useTypeSum} from './useTypeSum';
@@ -17,6 +17,7 @@ type Props = {
 };
 
 export const Q: Component<Props> = (props) => {
+  // TODO: Need to rework these so that when Q changes, they need to react to those changes
   useLoad(props.yms);
 
   const typeSum = useTypeSum(props.yms);

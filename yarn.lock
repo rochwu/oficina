@@ -1212,13 +1212,6 @@
   dependencies:
     "@solid-primitives/utils" "^6.3.0"
 
-"@solid-primitives/storage@^4.3.1":
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/@solid-primitives/storage/-/storage-4.3.1.tgz#232dbd9d5e2a5259e690462e1a81f7346549b32a"
-  integrity sha512-xAJsY2pvXrAaCai4N2grmWY3xh5om9suTDVzGkRF5JBpDzs3Apk+xIovdTErbW0iCzXIEefENXb9xmSzdjuLYA==
-  dependencies:
-    "@solid-primitives/utils" "^6.3.0"
-
 "@solid-primitives/styles@^0.0.111":
   version "0.0.111"
   resolved "https://registry.yarnpkg.com/@solid-primitives/styles/-/styles-0.0.111.tgz#b11372dc07f64b87042c20c0be742e2c02ca2869"
@@ -1953,7 +1946,7 @@ eslint-plugin-import@^2.31.0:
     string.prototype.trimend "^1.0.8"
     tsconfig-paths "^3.15.0"
 
-eslint-plugin-solid@^0.14.1:
+eslint-plugin-solid@^0.14.5:
   version "0.14.5"
   resolved "https://registry.yarnpkg.com/eslint-plugin-solid/-/eslint-plugin-solid-0.14.5.tgz#744356b3d2fd4ad86c5fdf7508f1703314381b7c"
   integrity sha512-nfuYK09ah5aJG/oEN6P1qziy1zLgW4PDWe75VNPi4CEFYk1x2AEqwFeQfEPR7gNn0F2jOeqKhx2E+5oNCOBYWQ==

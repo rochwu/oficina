@@ -12,6 +12,6 @@
     "noEmit": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "noUncheckedIndexedAccess": true
+    "noUncheckedIndexedAccess": true,
   }
 }

@@ -1,8 +1,7 @@
 import type {Signal} from 'solid-js';
 import {createEffect} from 'solid-js';
 
-import {isScrolling} from '../store';
-import {qs, setVisibleQ} from '../store/quarters';
+import {qs, setVisibleQ, isScrolling} from '../store';
 
 export const useVisibleQ = (ref: Signal<HTMLDivElement>) => {
   createEffect(() => {

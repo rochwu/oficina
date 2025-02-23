@@ -5,7 +5,7 @@ import {Q} from '../Q';
 import {SnapScroll} from './SnapScroll';
 import {Today} from './Today';
 import {useVisibleQ} from './useVisibleQ';
-import {qs} from '../store/quarters';
+import {qs} from '../store';
 
 const Container = styled.div({
   position: 'relative',
@@ -14,7 +14,7 @@ const Container = styled.div({
 });
 
 export const Qs = () => {
-  // Had to use a signal, couldn't work with just a reference value
+  // Had to use a signal, couldn't work with just by reference + have the tree be able to read from it
   const ref = createSignal<HTMLDivElement>({} as never);
 
   useVisibleQ(ref);
