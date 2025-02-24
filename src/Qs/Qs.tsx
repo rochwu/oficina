@@ -5,7 +5,7 @@ import {Q} from '../Q';
 import {SnapScroll} from './SnapScroll';
 import {Today} from './Today';
 import {useVisibleQ} from './useVisibleQ';
-import {qs} from '../store';
+import {qs, useCalendarFromServer} from '../store';
 
 const Container = styled.div({
   position: 'relative',
@@ -18,6 +18,7 @@ export const Qs = () => {
   const ref = createSignal<HTMLDivElement>({} as never);
 
   useVisibleQ(ref);
+  useCalendarFromServer();
 
   return (
     <Container>

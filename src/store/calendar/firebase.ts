@@ -1,9 +1,9 @@
 import type {DocumentData, QuerySnapshot} from 'firebase/firestore';
 import {collection, doc} from 'firebase/firestore';
 
-import {db} from '../firebase';
-import type {Ym, Ymd, Day, YmdDay} from '../types';
-import {user} from './signals';
+import {db} from '../../firebase';
+import type {Ym, Ymd, Day, YmdDay} from '../../types';
+import {user} from '../signals';
 
 export const getDaysRef = ({year, month}: Ym) => {
   return collection(

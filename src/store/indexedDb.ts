@@ -1,6 +1,3 @@
-import {untrack} from 'solid-js';
-import {reconcile, unwrap, type SetStoreFunction} from 'solid-js/store';
-
 const dbName = 'oficina';
 const storeName = 'oficina';
 const version = 1; // If we need to change schema, `onupgradeneeded` fires on version change, or when it's brand new
@@ -60,37 +57,4 @@ export const createIndexedDb = (name: string) => {
     set,
     delete: remove,
   };
-};
-
-/**
- * Taking a lot of ideas from @solid-primitives/storage makePersisted
- *
- * The only reason I had to made this is cuz makePersisted serializes IndexedDB to string
- * IndexedDB takes objects much better
- */
-export const persist = <T>(store: [get: T, set: SetStoreFunction<T>]) => {
-  const [storeProxy, setStore] = store;
-
-  const db = createIndexedDb('calendar');
-
-  db.get().then((value) => {
-    if (value) {
-      /**
-       * reconcile to merge value instead of straight up set
-       */
-      setStore(reconcile(value));
-    }
-  });
-
-  const set = (...args: any[]) => {
-    (setStore as any)(...args);
-
-    /**
-     * untrack makes `set` not a reactive signal
-     * unwrap turns the proxy into a plain object
-     */
-    db.set(unwrap(untrack(() => storeProxy)));
-  };
-
-  return [storeProxy, set] as typeof store;
 };
