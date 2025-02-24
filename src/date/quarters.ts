@@ -10,7 +10,7 @@ export const getQuarter = (month: number) => {
   })!;
 };
 
-const getYms = ({year, quarter}: Qy) => {
+export const getYms = ({year, quarter}: Qy) => {
   const months = quarters[quarter];
 
   return months.map((month) => {

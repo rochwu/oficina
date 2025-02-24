@@ -1,8 +1,7 @@
 import {untrack} from 'solid-js';
 import {createStore, reconcile, unwrap} from 'solid-js/store';
 
-import {getQuarter} from '../../date/quarters';
-import {getYms} from '../../Q/getYms';
+import {getQuarter, getYms} from '../../date/quarters';
 import type {Calendar} from '../../types';
 import {createIndexedDb} from '../indexedDb';
 import {today} from '../today';
