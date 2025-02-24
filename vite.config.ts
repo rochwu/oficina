@@ -20,7 +20,7 @@ export default defineConfig({
     }),
   ],
   server: {
-    // I don't know which config is it, but I can't firebase work if it isn't this host or port
+    // I don't know which config is it, but I can't make firebase work if it isn't this host or port
     host: '127.0.0.1',
     port: 3000,
   },
