@@ -1,5 +1,5 @@
-import {quarters} from '../constants';
-import type {Quarter, Qy, Ym} from '../types';
+import { quarters } from '../constants';
+import type { Quarter, Qy, Ym } from '../types';
 
 export const getQuarter = (month: number) => {
   // Without Number, it becomes a string, and the comparison at `getQuarters` fucks up
@@ -10,7 +10,7 @@ export const getQuarter = (month: number) => {
   })!;
 };
 
-export const getYms = ({year, quarter}: Qy) => {
+export const getYms = ({ year, quarter }: Qy) => {
   const months = quarters[quarter];
 
   return months.map((month) => {
@@ -22,7 +22,7 @@ export const getYms = ({year, quarter}: Qy) => {
   });
 };
 
-export const getQuarters = ({month, year}: Ym) => {
+export const getQuarters = ({ month, year }: Ym) => {
   const nowQ = getQuarter(month);
 
   const lastQ = ((nowQ + 3) % 4) as Quarter;
@@ -31,12 +31,12 @@ export const getQuarters = ({month, year}: Ym) => {
   return {
     last: {
       quarter: lastQ,
-      yms: getYms({year: nowQ === 0 ? year - 1 : year, quarter: lastQ}),
+      yms: getYms({ year: nowQ === 0 ? year - 1 : year, quarter: lastQ }),
     },
-    now: {quarter: nowQ, yms: getYms({year, quarter: nowQ})},
+    now: { quarter: nowQ, yms: getYms({ year, quarter: nowQ }) },
     next: {
       quarter: nextQ,
-      yms: getYms({year: nowQ === 3 ? year + 1 : year, quarter: nextQ}),
+      yms: getYms({ year: nowQ === 3 ? year + 1 : year, quarter: nextQ }),
     },
   };
 };

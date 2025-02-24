@@ -1,11 +1,11 @@
-import {createSignal} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import { createSignal } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {Q} from '../Q';
-import {SnapScroll} from './SnapScroll';
-import {Today} from './Today';
-import {useVisibleQ} from './useVisibleQ';
-import {qs, useCalendarFromServer} from '../store';
+import { Q } from '../Q';
+import { SnapScroll } from './SnapScroll';
+import { Today } from './Today';
+import { useVisibleQ } from './useVisibleQ';
+import { qs, useCalendarFromServer } from '../store';
 
 const Container = styled.div({
   position: 'relative',

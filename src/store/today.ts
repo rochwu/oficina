@@ -1,4 +1,4 @@
-import {createSignal} from 'solid-js';
+import { createSignal } from 'solid-js';
 
 export const [today, setToday] = createSignal(new Date());
 

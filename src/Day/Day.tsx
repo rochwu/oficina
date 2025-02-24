@@ -1,12 +1,12 @@
-import type {Component} from 'solid-js';
-import {Show} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import type { Component } from 'solid-js';
+import { Show } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {useMonth, useYear} from '../Context';
-import {vars} from '../css';
-import {dayType, getDayType, today} from '../store';
-import {Marker} from './Marker';
-import {useEvents} from './useEvents';
+import { useMonth, useYear } from '../Context';
+import { vars } from '../css';
+import { dayType, getDayType, today } from '../store';
+import { Marker } from './Marker';
+import { useEvents } from './useEvents';
 
 type Props = {
   day: number;
@@ -42,7 +42,7 @@ export const Day: Component<Props> = (props) => {
 
   const isWeekend = props.weekday === 0 || props.weekday === 6;
 
-  const ymd = () => ({year, month, day: props.day});
+  const ymd = () => ({ year, month, day: props.day });
 
   const events = useEvents(ymd());
 

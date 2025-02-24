@@ -1,10 +1,10 @@
-import type {Component} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import type { Component } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {GlobalStyles} from './css';
-import {Qs} from './Qs';
-import {SignInWithGoogle} from './SignInWithGoogle';
-import {TypeSelect} from './TypeSelect';
+import { GlobalStyles } from './css';
+import { Qs } from './Qs';
+import { SignInWithGoogle } from './SignInWithGoogle';
+import { TypeSelect } from './TypeSelect';
 
 const Container = styled.div({
   display: 'flex',

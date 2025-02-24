@@ -1,10 +1,10 @@
-import {untrack} from 'solid-js';
-import {createStore, reconcile, unwrap} from 'solid-js/store';
+import { untrack } from 'solid-js';
+import { createStore, reconcile, unwrap } from 'solid-js/store';
 
-import {getQuarter, getYms} from '../../date/quarters';
-import type {Calendar} from '../../types';
-import {createIndexedDb} from '../indexedDb';
-import {today} from '../today';
+import { getQuarter, getYms } from '../../date/quarters';
+import type { Calendar } from '../../types';
+import { createIndexedDb } from '../indexedDb';
+import { today } from '../today';
 
 type Local = {
   /**
@@ -41,20 +41,20 @@ const createLocalStorage = () => {
     try {
       const parsed = JSON.parse(stored) as Local;
 
-      const {hash} = meta(untrack(today));
+      const { hash } = meta(untrack(today));
 
       return parsed[hash];
     } catch {}
   };
 
   const set = (calendar: Calendar) => {
-    const {quarter, year, hash} = meta(untrack(today));
+    const { quarter, year, hash } = meta(untrack(today));
 
-    const yms = getYms({year, quarter});
+    const yms = getYms({ year, quarter });
 
     let empty = true;
 
-    const slice = yms.reduce((data, {year, month}) => {
+    const slice = yms.reduce((data, { year, month }) => {
       const value = calendar[year]?.[month];
 
       if (value) {
@@ -80,7 +80,7 @@ const createLocalStorage = () => {
     localStorage.setItem(key, JSON.stringify(raw));
   };
 
-  return {get, set};
+  return { get, set };
 };
 
 /**

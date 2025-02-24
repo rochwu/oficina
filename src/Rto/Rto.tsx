@@ -1,13 +1,13 @@
-import type {Component} from 'solid-js';
-import {createMemo} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import type { Component } from 'solid-js';
+import { createMemo } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {vars} from '../css';
-import {getWeekdays, getWeekdaysRemaining} from '../date';
-import {today} from '../store';
-import type {ByTypes, Ym} from '../types';
-import {Possible} from './Possible';
-import {Tracker} from './Tracker';
+import { vars } from '../css';
+import { getWeekdays, getWeekdaysRemaining } from '../date';
+import { today } from '../store';
+import type { ByTypes, Ym } from '../types';
+import { Possible } from './Possible';
+import { Tracker } from './Tracker';
 
 type Props = {
   types: ByTypes;
@@ -36,7 +36,7 @@ export const Rto: Component<Props> = (props) => {
   }, 0);
 
   const rto = createMemo(() => {
-    const {wfo = 0, pto = 0, holiday = 0, sick = 0} = props.types;
+    const { wfo = 0, pto = 0, holiday = 0, sick = 0 } = props.types;
     const total = weekdays - holiday - pto - sick;
     const required = Math.ceil((weekdays - holiday - pto - sick) / 2);
 
@@ -44,7 +44,7 @@ export const Rto: Component<Props> = (props) => {
       wfo,
       required,
       missing: Math.max(required - wfo, 0),
-      possible: getWeekdaysRemaining({from: today(), to: props.yms.at(-1)!}),
+      possible: getWeekdaysRemaining({ from: today(), to: props.yms.at(-1)! }),
       percent: getPercent(wfo, total),
     };
   });

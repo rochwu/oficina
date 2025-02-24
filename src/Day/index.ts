@@ -1,1 +1,1 @@
-export {Day} from './Day';
+export { Day } from './Day';

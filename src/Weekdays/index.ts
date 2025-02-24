@@ -1,1 +1,1 @@
-export {Weekdays} from './Weekdays';
+export { Weekdays } from './Weekdays';

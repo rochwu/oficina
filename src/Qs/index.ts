@@ -1,1 +1,1 @@
-export {Qs} from './Qs';
+export { Qs } from './Qs';

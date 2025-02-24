@@ -1,1 +1,1 @@
-export {db} from './firestore';
+export { db } from './firestore';

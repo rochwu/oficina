@@ -37,7 +37,7 @@ export default tseslint.config(
       ],
       '@typescript-eslint/consistent-type-imports': [
         'error',
-        {prefer: 'type-imports', fixStyle: 'separate-type-imports'},
+        { prefer: 'type-imports', fixStyle: 'separate-type-imports' },
       ],
       ...solid.rules,
     },

@@ -7,13 +7,13 @@ import {
   onAuthStateChanged,
   signInWithRedirect,
 } from 'firebase/auth';
-import type {Component} from 'solid-js';
-import {createResource, Show} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import type { Component } from 'solid-js';
+import { createResource, Show } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {vars} from '../css';
-import {app} from '../firebase/app';
-import {setUser, user} from '../store';
+import { vars } from '../css';
+import { app } from '../firebase/app';
+import { setUser, user } from '../store';
 import html from './google.html?raw';
 
 const Position = styled.div({

@@ -4,7 +4,7 @@ import {
   persistentMultipleTabManager,
 } from 'firebase/firestore';
 
-import {app} from './app';
+import { app } from './app';
 
 export const db = initializeFirestore(app, {
   localCache: persistentLocalCache({

@@ -1,7 +1,7 @@
-import {calendar} from './calendar';
-import type {Ymd} from '../../types';
+import { calendar } from './calendar';
+import type { Ymd } from '../../types';
 
-export const getDay = ({year, month, day}: Ymd) => {
+export const getDay = ({ year, month, day }: Ymd) => {
   return calendar[year]?.[month]?.[day];
 };
 

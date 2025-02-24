@@ -1,7 +1,7 @@
-import {collection, getDocs, writeBatch} from 'firebase/firestore';
+import { collection, getDocs, writeBatch } from 'firebase/firestore';
 
-import {db} from '../firebase';
-import {user} from './signals';
+import { db } from '../firebase';
+import { user } from './signals';
 
 const convert = async () => {
   const key = user();

@@ -1,12 +1,12 @@
 import './select.css';
 
-import type {SelectRootProps} from '@kobalte/core/select';
-import {Select as Base} from '@kobalte/core/select';
-import type {Component, JSXElement} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import type { SelectRootProps } from '@kobalte/core/select';
+import { Select as Base } from '@kobalte/core/select';
+import type { Component, JSXElement } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {vars} from '../css';
-import type {DayType} from '../types';
+import { vars } from '../css';
+import type { DayType } from '../types';
 
 export type SelectOption = {
   label: JSXElement;
@@ -68,11 +68,11 @@ export const Select: Component<SelectProps> = (props) => {
     >
       <Base.Trigger
         class="select__trigger"
-        style={{'background-color': vars.select.backgroundColor}}
+        style={{ 'background-color': vars.select.backgroundColor }}
       >
         <Base.Value<SelectOption> class="select__value">
           {(state) => {
-            const {label, value} = state.selectedOption();
+            const { label, value } = state.selectedOption();
 
             return (
               <Selected>

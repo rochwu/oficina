@@ -2,14 +2,14 @@ export const createCssVars = <
   Styles extends Record<string, any>,
   MoreStyles extends Record<string, any> | {},
 >(
-  config: {namespace: string},
+  config: { namespace: string },
   styles: Styles,
   /**
    * Let us compose styles based on previously defined CSS variables
    */
   composer?: (styles: Styles) => MoreStyles,
 ) => {
-  const {namespace} = config;
+  const { namespace } = config;
 
   // Record of CSS variable and initial value, spread this at :root to register
   const root: Record<string, string> = {};
@@ -59,7 +59,10 @@ export const createCssVars = <
 
   const styled = proxify(styles);
 
-  const vars = {...(composer ? {...proxify(composer(styled))} : {}), ...styled};
+  const vars = {
+    ...(composer ? { ...proxify(composer(styled)) } : {}),
+    ...styled,
+  };
 
   return {
     vars: vars as typeof composer extends undefined

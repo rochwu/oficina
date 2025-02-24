@@ -1,14 +1,14 @@
-import type {Component, JSX} from 'solid-js';
-import {Index, onMount, splitProps} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import type { Component, JSX } from 'solid-js';
+import { Index, onMount, splitProps } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {months} from '../constants';
-import {MonthProvider, YearProvider} from '../Context';
-import {vars} from '../css';
-import {getDays, getFirstDayOfWeek} from '../date';
-import {Day} from '../Day';
-import {today} from '../store';
-import type {Ym} from '../types';
+import { months } from '../constants';
+import { MonthProvider, YearProvider } from '../Context';
+import { vars } from '../css';
+import { getDays, getFirstDayOfWeek } from '../date';
+import { Day } from '../Day';
+import { today } from '../store';
+import type { Ym } from '../types';
 
 const Container = styled.div({
   display: 'flex',
@@ -46,11 +46,11 @@ export const Month: Component<Props> = (rawProps) => {
   const firstWeekday = getFirstDayOfWeek(props);
   const days = getDays(props);
 
-  const tiles = Array.from({length: firstWeekday + days});
+  const tiles = Array.from({ length: firstWeekday + days });
 
   onMount(() => {
     if (today().getMonth() === props.month) {
-      ref.scrollIntoView({behavior: 'instant'});
+      ref.scrollIntoView({ behavior: 'instant' });
     }
   });
 

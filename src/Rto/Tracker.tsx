@@ -1,7 +1,7 @@
-import type {Component} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import type { Component } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {vars} from '../css';
+import { vars } from '../css';
 
 type Props = {
   wfo: number;

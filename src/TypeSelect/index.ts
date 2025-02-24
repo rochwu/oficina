@@ -1,1 +1,1 @@
-export {TypeSelect} from './TypeSelect';
+export { TypeSelect } from './TypeSelect';

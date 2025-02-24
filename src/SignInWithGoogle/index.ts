@@ -1,1 +1,1 @@
-export {SignInWithGoogle} from './SignInWithGoogle';
+export { SignInWithGoogle } from './SignInWithGoogle';

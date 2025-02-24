@@ -1,10 +1,10 @@
-import {styled} from 'solid-styled-components';
+import { styled } from 'solid-styled-components';
 
-import {vars} from '../css';
-import {dayType, setDayType} from '../store';
-import type {DayType} from '../types';
-import type {SelectProps} from './Select';
-import {Select} from './Select';
+import { vars } from '../css';
+import { dayType, setDayType } from '../store';
+import type { DayType } from '../types';
+import type { SelectProps } from './Select';
+import { Select } from './Select';
 
 const Container = styled.div({
   position: 'absolute',
@@ -15,11 +15,11 @@ const Container = styled.div({
 });
 
 export const TypeSelect = () => {
-  const options: {label: string; value: DayType}[] = [
-    {value: 'wfo', label: 'WFO'},
-    {value: 'pto', label: 'PTO'},
-    {value: 'sick', label: 'Sick'},
-    {value: 'holiday', label: 'Holiday'},
+  const options: { label: string; value: DayType }[] = [
+    { value: 'wfo', label: 'WFO' },
+    { value: 'pto', label: 'PTO' },
+    { value: 'sick', label: 'Sick' },
+    { value: 'holiday', label: 'Holiday' },
   ];
 
   const change: SelectProps['onChange'] = (option) => {

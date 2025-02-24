@@ -1,8 +1,8 @@
-import type {Calendar, Day, Ymd} from '../../types';
+import type { Calendar, Day, Ymd } from '../../types';
 
 export const changeDay = (draft: Calendar) => {
   return {
-    on: ({year, month, day}: Ymd) => {
+    on: ({ year, month, day }: Ymd) => {
       draft[year] ??= {};
       draft[year][month] ??= {};
 

@@ -1,14 +1,14 @@
-import type {Component, JSXElement} from 'solid-js';
-import {createContext, useContext} from 'solid-js';
+import type { Component, JSXElement } from 'solid-js';
+import { createContext, useContext } from 'solid-js';
 
-import type {Quarter} from './types';
+import type { Quarter } from './types';
 
 const DayContext = createContext(NaN);
 const MonthContext = createContext(NaN);
 const YearContext = createContext(NaN);
 const QuarterContext = createContext(NaN);
 
-export const DayProvider: Component<{children: JSXElement; day: number}> = (
+export const DayProvider: Component<{ children: JSXElement; day: number }> = (
   props,
 ) => {
   return (
@@ -18,9 +18,10 @@ export const DayProvider: Component<{children: JSXElement; day: number}> = (
   );
 };
 
-export const MonthProvider: Component<{children: JSXElement; month: number}> = (
-  props,
-) => {
+export const MonthProvider: Component<{
+  children: JSXElement;
+  month: number;
+}> = (props) => {
   return (
     <MonthContext.Provider value={props.month}>
       {props.children}
@@ -28,7 +29,7 @@ export const MonthProvider: Component<{children: JSXElement; month: number}> = (
   );
 };
 
-export const YearProvider: Component<{children: JSXElement; year: number}> = (
+export const YearProvider: Component<{ children: JSXElement; year: number }> = (
   props,
 ) => {
   return (

@@ -1,7 +1,7 @@
-import type {Component, JSXElement} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import type { Component, JSXElement } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {vars} from '../css';
+import { vars } from '../css';
 
 const Container = styled.div({
   display: 'flex',

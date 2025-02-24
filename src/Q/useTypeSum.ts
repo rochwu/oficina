@@ -1,14 +1,14 @@
-import {createMemo} from 'solid-js';
+import { createMemo } from 'solid-js';
 
-import {calendar} from '../store';
-import type {Ym, ByTypes} from '../types';
+import { calendar } from '../store';
+import type { Ym, ByTypes } from '../types';
 
 export const useTypeSum = (yms: Ym[]) => {
-  const accessors = yms.map(({year, month}) => {
+  const accessors = yms.map(({ year, month }) => {
     const signals = createMemo(() => {
       const stored = calendar[year]?.[month] ?? {};
 
-      return Object.entries(stored).reduce((result, [day, {type}]) => {
+      return Object.entries(stored).reduce((result, [day, { type }]) => {
         if (Number.isNaN(day) || !type) {
           console.error('😱 corrupted save?!', year, month, day, type);
         }

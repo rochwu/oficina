@@ -1,8 +1,8 @@
-import type {Component, JSXElement, Signal} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import type { Component, JSXElement, Signal } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {setIsScrolling} from '../store';
-import {useIsSnapped} from './useIsSnapped';
+import { setIsScrolling } from '../store';
+import { useIsSnapped } from './useIsSnapped';
 
 type Props = {
   ref: Signal<HTMLDivElement>;

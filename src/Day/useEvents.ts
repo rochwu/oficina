@@ -1,8 +1,8 @@
-import type {JSX} from 'solid-js/jsx-runtime';
+import type { JSX } from 'solid-js/jsx-runtime';
 
-import {removeDelayMs} from '../constants';
-import {isScrolling, remove, select} from '../store';
-import type {Ymd} from '../types';
+import { removeDelayMs } from '../constants';
+import { isScrolling, remove, select } from '../store';
+import type { Ymd } from '../types';
 
 export const useEvents = ({
   year,
@@ -23,7 +23,7 @@ export const useEvents = ({
       stopSave = true;
 
       if (!isScrolling()) {
-        remove({month, year, day});
+        remove({ month, year, day });
       }
     }, removeDelayMs);
   };
@@ -34,7 +34,7 @@ export const useEvents = ({
 
     if (!stop) {
       if (!isScrolling()) {
-        select({month, year, day});
+        select({ month, year, day });
       }
     }
   };

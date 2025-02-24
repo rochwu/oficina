@@ -1,6 +1,6 @@
-import type {Ym} from '../types';
+import type { Ym } from '../types';
 
-export const getWeekdaysRemaining = ({from, to}: {from: Date; to: Ym}) => {
+export const getWeekdaysRemaining = ({ from, to }: { from: Date; to: Ym }) => {
   const start = new Date(from);
   const end = new Date(to.year, to.month + 1, 0); // Last day of the month
   let count = 0;

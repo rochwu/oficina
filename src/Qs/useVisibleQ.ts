@@ -1,7 +1,7 @@
-import type {Signal} from 'solid-js';
-import {createEffect} from 'solid-js';
+import type { Signal } from 'solid-js';
+import { createEffect } from 'solid-js';
 
-import {qs, setVisibleQ, isScrolling} from '../store';
+import { qs, setVisibleQ, isScrolling } from '../store';
 
 export const useVisibleQ = (ref: Signal<HTMLDivElement>) => {
   createEffect(() => {
@@ -11,7 +11,7 @@ export const useVisibleQ = (ref: Signal<HTMLDivElement>) => {
       return;
     }
 
-    const {next, now, last} = qs();
+    const { next, now, last } = qs();
 
     const left = el.scrollLeft;
     const width = el.clientWidth;

@@ -1,7 +1,7 @@
-import {createCssVars} from './createCssVars';
+import { createCssVars } from './createCssVars';
 
-export const {root, vars} = createCssVars(
-  {namespace: 'ofcn'},
+export const { root, vars } = createCssVars(
+  { namespace: 'ofcn' },
   {
     white: '#FFF5EE',
   },

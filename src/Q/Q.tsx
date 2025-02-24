@@ -1,13 +1,13 @@
-import type {Component} from 'solid-js';
-import {createEffect, For, Show} from 'solid-js';
-import {produce} from 'solid-js/store';
+import type { Component } from 'solid-js';
+import { createEffect, For, Show } from 'solid-js';
+import { produce } from 'solid-js/store';
 
-import {QuarterProvider} from '../Context';
-import {Month} from '../Month';
-import {Rto} from '../Rto';
-import {setRtoByQ} from '../store';
-import type {Quarter, Ym} from '../types';
-import {useTypeSum} from './useTypeSum';
+import { QuarterProvider } from '../Context';
+import { Month } from '../Month';
+import { Rto } from '../Rto';
+import { setRtoByQ } from '../store';
+import type { Quarter, Ym } from '../types';
+import { useTypeSum } from './useTypeSum';
 
 type Props = {
   current?: true;

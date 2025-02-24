@@ -1,4 +1,4 @@
-import type {DayType, Quarter} from './types';
+import type { DayType, Quarter } from './types';
 
 export const quarters = {
   0: [1, 2, 3],

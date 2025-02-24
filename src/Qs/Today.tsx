@@ -1,8 +1,8 @@
-import type {Component} from 'solid-js';
-import {styled} from 'solid-styled-components';
+import type { Component } from 'solid-js';
+import { styled } from 'solid-styled-components';
 
-import {vars} from '../css';
-import {today} from '../store';
+import { vars } from '../css';
+import { today } from '../store';
 
 type Props = {};
 
@@ -32,7 +32,11 @@ export const Today: Component<Props> = () => {
     // day > button > month
     const el = document.querySelector(`[data-month="${month}"]`);
 
-    el?.scrollIntoView({block: 'center', inline: 'center', behavior: 'smooth'});
+    el?.scrollIntoView({
+      block: 'center',
+      inline: 'center',
+      behavior: 'smooth',
+    });
   };
 
   return (
