@@ -11,10 +11,15 @@ type Props = {
 
 const Container = styled.div({
   display: 'flex',
-  flexDirection: 'column',
+  fontSize: vars.tracker.fontSize,
+});
+
+const Small = styled.span({
+  display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  fontSize: vars.tracker.fontSize,
+  fontSize: vars.day.fontSize,
+  padding: '0 2px',
 });
 
 const getPercent = (percent: number) => {
@@ -25,6 +30,14 @@ export const Tracker: Component<Props> = (props) => {
   const percent = () => getPercent(props.percent);
 
   return (
-    <Container>{`${props.wfo} / ${props.required} = ${percent()}%`}</Container>
+    <Container>
+      {props.wfo}
+      <Small>/</Small>
+      {props.required}
+      <Small>=</Small>
+      {percent()}
+      <Small>%</Small>
+    </Container>
+    // <Container>{`${props.wfo} / ${props.required} = ${percent()}%`}</Container>
   );
 };
