@@ -1,11 +1,13 @@
-import {Component, createMemo} from 'solid-js';
+import type {Component} from 'solid-js';
+import {createMemo} from 'solid-js';
 import {styled} from 'solid-styled-components';
+
 import {vars} from '../css';
 import {getWeekdays, getWeekdaysRemaining} from '../date';
-import {ByTypes, Ym} from '../types';
-import {Pill} from './Pill';
-import {Tracker} from './Tracker';
 import {today} from '../store';
+import type {ByTypes, Ym} from '../types';
+import {Possible} from './Possible';
+import {Tracker} from './Tracker';
 
 type Props = {
   types: ByTypes;
@@ -22,7 +24,6 @@ const Container = styled.div({
   bottom: 0,
   left: 0,
   padding: vars.gap,
-  // gap: '4px',
 });
 
 const getPercent = (n: number, d: number) => {
@@ -51,8 +52,7 @@ export const Rto: Component<Props> = (props) => {
   return (
     <>
       <Container>
-        {/* <Pill start={rto().wfo} end={rto().required} /> */}
-        <Pill start={rto().missing} end={`${rto().possible} posbl`} />
+        <Possible start={rto().missing} end={`${rto().possible} posbl`} />
         <Tracker {...rto()} />
       </Container>
     </>

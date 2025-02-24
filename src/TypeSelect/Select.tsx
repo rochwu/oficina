@@ -1,11 +1,12 @@
-import {Component, JSXElement} from 'solid-js';
+import './select.css';
 
-import {Select as Base, SelectRootProps} from '@kobalte/core/select';
+import type {SelectRootProps} from '@kobalte/core/select';
+import {Select as Base} from '@kobalte/core/select';
+import type {Component, JSXElement} from 'solid-js';
+import {styled} from 'solid-styled-components';
 
 import {vars} from '../css';
-import './select.css';
-import {styled} from 'solid-styled-components';
-import {DayType} from '../types';
+import type {DayType} from '../types';
 
 export type SelectOption = {
   label: JSXElement;

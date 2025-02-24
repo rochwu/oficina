@@ -1,5 +1,6 @@
-import {Component, JSXElement} from 'solid-js';
+import type {Component, JSXElement} from 'solid-js';
 import {styled} from 'solid-styled-components';
+
 import {vars} from '../css';
 
 const Container = styled.div({
@@ -31,7 +32,7 @@ type Props = {
   end: JSXElement;
 };
 
-export const Pill: Component<Props> = (props) => {
+export const Possible: Component<Props> = (props) => {
   return (
     <Container>
       <Start>{props.start}</Start>

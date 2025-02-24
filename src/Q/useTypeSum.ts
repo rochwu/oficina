@@ -1,10 +1,11 @@
 import {createMemo} from 'solid-js';
+
 import {calendar} from '../store';
-import {Ym, ByTypes} from '../types';
+import type {Ym, ByTypes} from '../types';
 
 export const useTypeSum = (yms: Ym[]) => {
-  const accessors = yms.map(({year, month}) =>
-    createMemo(() => {
+  const accessors = yms.map(({year, month}) => {
+    const signals = createMemo(() => {
       const stored = calendar[year]?.[month] ?? {};
 
       return Object.entries(stored).reduce((result, [day, {type}]) => {
@@ -21,10 +22,12 @@ export const useTypeSum = (yms: Ym[]) => {
 
         return result;
       }, {} as ByTypes);
-    }),
-  );
+    });
 
-  return createMemo(() => {
+    return signals;
+  });
+
+  const sum = createMemo(() => {
     return accessors.reduce((result, accessor) => {
       const data = accessor();
 
@@ -38,4 +41,6 @@ export const useTypeSum = (yms: Ym[]) => {
       return result;
     }, {} as ByTypes);
   });
+
+  return sum;
 };

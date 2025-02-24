@@ -1,11 +1,8 @@
 {
-  "cSpell.words": [
-    "Oficina",
-    "unsub",
-    "unsubs"
-  ],
+  "cSpell.words": ["unsub", "unsubs"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
     "source.fixAll.eslint": "explicit"
   }
 }

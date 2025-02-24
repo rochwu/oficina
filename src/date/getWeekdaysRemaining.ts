@@ -1,4 +1,4 @@
-import {Ym} from '../types';
+import type {Ym} from '../types';
 
 export const getWeekdaysRemaining = ({from, to}: {from: Date; to: Ym}) => {
   const start = new Date(from);
@@ -6,7 +6,7 @@ export const getWeekdaysRemaining = ({from, to}: {from: Date; to: Ym}) => {
   let count = 0;
 
   while (start <= end) {
-    let day = start.getDay(); // 0 = Sunday, 6 = Saturday
+    const day = start.getDay(); // 0 = Sunday, 6 = Saturday
     if (day >= 1 && day <= 5) {
       // Monday to Friday
       count++;

@@ -1,3 +1,5 @@
+import './google.css';
+
 import {
   getAuth,
   getRedirectResult,
@@ -5,12 +7,13 @@ import {
   onAuthStateChanged,
   signInWithRedirect,
 } from 'firebase/auth';
-import {Component, createResource, onMount, Show} from 'solid-js';
+import type {Component} from 'solid-js';
+import {createResource, Show} from 'solid-js';
 import {styled} from 'solid-styled-components';
+
 import {vars} from '../css';
 import {app} from '../firebase/app';
 import {setUser, user} from '../store';
-import './google.css';
 import html from './google.html?raw';
 
 const Position = styled.div({
@@ -57,6 +60,7 @@ export const SignInWithGoogle: Component = () => {
 
   return (
     <Show when={isNotRedirect.state === 'ready' && !user()}>
+      {/* eslint-disable-next-line solid/no-innerhtml */}
       <Position innerHTML={html} onClick={signIn} />
     </Show>
   );

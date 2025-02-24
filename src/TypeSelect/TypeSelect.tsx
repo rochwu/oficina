@@ -1,8 +1,10 @@
 import {styled} from 'solid-styled-components';
+
 import {vars} from '../css';
 import {dayType, setDayType} from '../store';
-import {DayType} from '../types';
-import {Select, SelectProps} from './Select';
+import type {DayType} from '../types';
+import type {SelectProps} from './Select';
+import {Select} from './Select';
 
 const Container = styled.div({
   position: 'absolute',

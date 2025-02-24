@@ -1,7 +1,8 @@
-import {JSX} from 'solid-js/jsx-runtime';
-import {isScrolling, remove, select} from '../store';
-import {Ymd} from '../types';
+import type {JSX} from 'solid-js/jsx-runtime';
+
 import {removeDelayMs} from '../constants';
+import {isScrolling, remove, select} from '../store';
+import type {Ymd} from '../types';
 
 export const useEvents = ({
   year,
