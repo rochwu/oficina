@@ -16,7 +16,6 @@ const Container = styled.div({
   alignItems: 'center',
   flexDirection: 'column',
 
-  scrollSnapAlign: 'center',
   height: '100%',
 });
 
