@@ -6,7 +6,7 @@ import type { Quarter } from './types';
 const DayContext = createContext(NaN);
 const MonthContext = createContext(NaN);
 const YearContext = createContext(NaN);
-const QuarterContext = createContext(NaN);
+const QuarterContext = createContext<Quarter>();
 
 export const DayProvider: Component<{ children: JSXElement; day: number }> = (
   props,

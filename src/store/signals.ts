@@ -13,3 +13,5 @@ export const [isScrolling, setIsScrolling] = createSignal(false);
 export const [user, setUser] = createSignal('');
 
 export const [dayType, setDayType] = createSignal<DayType>('wfo');
+
+export const [gridIndex, setGridIndex] = createSignal(NaN);
