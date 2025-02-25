@@ -1,14 +1,14 @@
 import type { Component, JSX } from 'solid-js';
-import { Index, onMount, splitProps } from 'solid-js';
+import { createEffect, Index, onMount, splitProps } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
 import { months } from '../constants';
-import { MonthProvider, YearProvider } from '../Context';
+import { MonthProvider, useQuarter, YearProvider } from '../Context';
 import { vars } from '../css';
 import { getDays, getFirstDayOfWeek } from '../date';
 import { Day } from '../Day';
-import { today } from '../store';
-import type { Ym } from '../types';
+import { setGridIndex, setVisibleQ, today, gridIndex } from '../store';
+import type { Quarter, Ym } from '../types';
 
 const Container = styled.div({
   display: 'flex',
@@ -36,10 +36,11 @@ const Name = styled.div({
   textAlign: 'center',
 });
 
-type Props = Ym & JSX.HTMLAttributes<HTMLDivElement>;
+type Props = { index: number } & Ym & JSX.HTMLAttributes<HTMLDivElement>;
 
 export const Month: Component<Props> = (rawProps) => {
-  const [props, elProps] = splitProps(rawProps, ['year', 'month']);
+  const [props, elProps] = splitProps(rawProps, ['year', 'month', 'index']);
+  const quarter = useQuarter();
 
   let ref!: HTMLDivElement;
 
@@ -51,7 +52,15 @@ export const Month: Component<Props> = (rawProps) => {
   onMount(() => {
     if (today().getMonth() === props.month) {
       ref.scrollIntoView({ behavior: 'instant' });
+      setGridIndex(props.index);
     }
+
+    createEffect(() => {
+      if (gridIndex() === props.index) {
+        ref.scrollIntoView({ behavior: 'smooth' });
+        setVisibleQ(quarter as Quarter);
+      }
+    });
   });
 
   const name = () => {

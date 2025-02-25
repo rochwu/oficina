@@ -5,11 +5,11 @@ import {
   handleTouchMove,
   handleTouchEnd,
 } from './handleTouch';
-import { throttledHandleWheel } from './handleWheel';
+import { handleWheel } from './handleWheel';
 import type { SwipeHandler } from './types';
 
 export const useSwipe = (callback: SwipeHandler) => {
-  const wheel = throttledHandleWheel(callback);
+  const wheel = handleWheel(callback);
   const touchstart = handleTouchStart(callback);
   const touchmove = handleTouchMove(callback);
   const touchend = handleTouchEnd(callback);

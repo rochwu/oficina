@@ -40,7 +40,7 @@ export const handleTouchStart =
     ended = false;
     pressed = false;
 
-    const { screenX, screenY } = event.changedTouches[0];
+    const { screenX, screenY } = event.changedTouches[0]!;
     updateAverage(screenX, screenY);
 
     setTimeout(() => {
@@ -64,7 +64,7 @@ export const handleTouchStart =
 export const handleTouchMove =
   (callback: (direction: SwipeAction) => void) => (event: TouchEvent) => {
     if (!ended) {
-      const { screenX, screenY } = event.changedTouches[0];
+      const { screenX, screenY } = event.changedTouches[0]!;
       updateAverage(screenX, screenY);
     }
   };
@@ -72,7 +72,7 @@ export const handleTouchMove =
 export const handleTouchEnd =
   (callback: (direction: SwipeAction) => void) => (event: TouchEvent) => {
     if (!ended) {
-      const { screenX, screenY } = event.changedTouches[0];
+      const { screenX, screenY } = event.changedTouches[0]!;
       updateAverage(screenX, screenY);
 
       const deltaX = Math.abs(averageX);

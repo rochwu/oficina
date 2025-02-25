@@ -13,6 +13,7 @@ type Props = {
   current?: true;
   quarter: Quarter;
   yms: Ym[];
+  indices: [number, number, number];
 };
 
 export const Q: Component<Props> = (props) => {
@@ -29,8 +30,12 @@ export const Q: Component<Props> = (props) => {
   return (
     <QuarterProvider quarter={props.quarter}>
       <For each={props.yms}>
-        {(ym) => (
-          <Month {...ym} id={`q${props.quarter}-${ym.year}-${ym.month}`} />
+        {(ym, index) => (
+          <Month
+            {...ym}
+            id={`q${props.quarter}-${ym.year}-${ym.month}`}
+            index={props.indices[index()]!}
+          />
         )}
       </For>
       <Show when={props.current}>
