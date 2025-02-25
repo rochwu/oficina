@@ -6,6 +6,7 @@ import { SnapScroll } from './SnapScroll';
 import { Today } from './Today';
 import { useVisibleQ } from './useVisibleQ';
 import { qs, useCalendarFromServer } from '../store';
+import { useSwipe } from '../useSwipe';
 
 const Container = styled.div({
   position: 'relative',
@@ -19,6 +20,10 @@ export const Qs = () => {
 
   useVisibleQ(ref);
   useCalendarFromServer();
+
+  useSwipe((args) => {
+    console.log(args);
+  });
 
   return (
     <Container>

@@ -23,9 +23,10 @@ const Container = styled.div({
 
   scrollbarWidth: 'none',
 
-  overflow: 'scroll',
-  scrollSnapType: 'both mandatory',
-  scrollBehavior: 'smooth',
+  overflow: 'hidden',
+  // scrollSnapType: 'both mandatory',
+  // scrollBehavior: 'smooth',
+  touchAction: 'none',
 });
 
 export const SnapScroll: Component<Props> = (props) => {
