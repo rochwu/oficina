@@ -33,8 +33,6 @@ export const Qs = () => {
   useCalendarFromServer();
 
   useSwipe((direction) => {
-    console.log(direction);
-
     switch (direction) {
       case 'down': {
         setGridIndex(move(-1));

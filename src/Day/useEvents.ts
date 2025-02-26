@@ -1,3 +1,4 @@
+import { untrack } from 'solid-js';
 import type { JSX } from 'solid-js/jsx-runtime';
 
 import { removeDelayMs } from '../constants';
@@ -22,7 +23,7 @@ export const useEvents = ({
     timeout = window.setTimeout(() => {
       stopSave = true;
 
-      if (!isScrolling()) {
+      if (!untrack(isScrolling)) {
         remove({ month, year, day });
       }
     }, removeDelayMs);
@@ -33,7 +34,7 @@ export const useEvents = ({
     reset();
 
     if (!stop) {
-      if (!isScrolling()) {
+      if (!untrack(isScrolling)) {
         select({ month, year, day });
       }
     }

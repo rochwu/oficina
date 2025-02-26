@@ -3,7 +3,7 @@ import {
   runTransaction,
   serverTimestamp,
 } from 'firebase/firestore';
-import { createEffect } from 'solid-js';
+import { createEffect, untrack } from 'solid-js';
 import { produce } from 'solid-js/store';
 
 import { changeDay } from './changeDay';
@@ -21,7 +21,7 @@ const saveDay = (ymd: Ymd) => {
   const save = (day: Day) => {
     const { type } = day;
 
-    if (user()) {
+    if (untrack(user)) {
       runTransaction(db, async (transaction) => {
         const dayRef = getDayRef(ymd);
 
@@ -61,7 +61,7 @@ const onFirestore = (ym: Ym) => {
 };
 
 export const select = (ymd: Ymd) => {
-  const type = dayType();
+  const type = untrack(dayType);
 
   if (getDay(ymd)?.type === type) {
     return;
