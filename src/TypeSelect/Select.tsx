@@ -60,9 +60,9 @@ export const Select = (props: SelectProps) => {
               />
             </Selected>
           </Base.ItemLabel>
-          {/* <Component.ItemIndicator class="select__item-indicator">
+          {/* <Base.ItemIndicator class="select__item-indicator">
               x
-            </Component.ItemIndicator> */}
+            </Base.ItemIndicator> */}
         </Base.Item>
       )}
     >
@@ -86,7 +86,7 @@ export const Select = (props: SelectProps) => {
             );
           }}
         </Base.Value>
-        {/* <Component.Icon class="select__icon">x</Component.Icon> */}
+        {/* <Base.Icon class="select__icon">x</Base.Icon> */}
       </Base.Trigger>
       <Base.Portal>
         <Base.Content

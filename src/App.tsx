@@ -1,4 +1,3 @@
-import type { Component } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
 import { GlobalStyles } from './css';
@@ -20,7 +19,7 @@ const Container = styled.div({
   width: '100%',
 });
 
-export const App: Component = () => {
+export const App = () => {
   return (
     <>
       <GlobalStyles />

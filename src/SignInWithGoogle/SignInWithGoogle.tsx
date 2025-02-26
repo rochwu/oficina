@@ -7,7 +7,6 @@ import {
   onAuthStateChanged,
   signInWithRedirect,
 } from 'firebase/auth';
-import type { Component } from 'solid-js';
 import { createResource, Show } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
@@ -53,7 +52,7 @@ const [isNotRedirect] = createResource(() => getRedirectResult(auth));
  *
  * Get the button html and css https://developers.google.com/identity/branding-guidelines
  */
-export const SignInWithGoogle: Component = () => {
+export const SignInWithGoogle = () => {
   const signIn = () => {
     signInWithRedirect(auth, provider);
   };

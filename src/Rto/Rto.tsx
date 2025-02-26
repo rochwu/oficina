@@ -30,14 +30,18 @@ const getPercent = (n: number, d: number) => {
 };
 
 export const Rto = (props: Props) => {
-  const weekdays = props.yms.reduce((days, ym) => {
-    return days + getWeekdays(ym);
-  }, 0);
+  const weekdays = createMemo(() => {
+    return props.yms.reduce((days, ym) => {
+      return days + getWeekdays(ym);
+    }, 0);
+  });
 
   const rto = createMemo(() => {
+    const weekdays = weekdays();
+
     const { wfo = 0, pto = 0, holiday = 0, sick = 0 } = props.types;
-    const total = weekdays - holiday - pto - sick;
-    const required = Math.ceil((weekdays - holiday - pto - sick) / 2);
+    const total = totalWeekdays - holiday - pto - sick;
+    const required = Math.ceil((totalWeekdays - holiday - pto - sick) / 2);
 
     return {
       wfo,
