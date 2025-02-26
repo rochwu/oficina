@@ -1,4 +1,3 @@
-import type { Component } from 'solid-js';
 import { For } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
@@ -14,7 +13,7 @@ const Container = styled.div({
 
 const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-const Day: Component<{ day: string }> = (props) => {
+const Day = (props: { day: string }) => {
   const isWeekend = () => props.day === 'S';
 
   return (
@@ -24,6 +23,6 @@ const Day: Component<{ day: string }> = (props) => {
   );
 };
 
-export const Weekdays: Component = () => {
+export const Weekdays = () => {
   return <For each={weekdays}>{(day) => <Day day={day} />}</For>;
 };

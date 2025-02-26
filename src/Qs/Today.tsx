@@ -1,8 +1,7 @@
-import type { Component } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
 import { vars } from '../css';
-import { today } from '../store';
+import { setGridIndex } from '../store';
 
 type Props = {};
 
@@ -25,22 +24,15 @@ const Container = styled.div({
   color: vars.today.color,
 });
 
-export const Today: Component<Props> = () => {
-  const go = () => {
-    const month = today().getMonth();
+export const Today = (_: Props) => {
+  const goTo = () => {
+    const el = document.querySelector('[data-today]')?.closest('[data-index]')!;
 
-    // day > button > month
-    const el = document.querySelector(`[data-month="${month}"]`);
-
-    el?.scrollIntoView({
-      block: 'center',
-      inline: 'center',
-      behavior: 'smooth',
-    });
+    setGridIndex(Number(el.getAttribute('data-index')!));
   };
 
   return (
-    <Container role="button" onClick={go}>
+    <Container role="button" onClick={goTo}>
       tdy
     </Container>
   );

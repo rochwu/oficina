@@ -1,4 +1,4 @@
-import type { Component, JSX } from 'solid-js';
+import type { JSX } from 'solid-js';
 import { createEffect, Index, onMount, splitProps } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
@@ -37,25 +37,25 @@ const Name = styled.div({
 
 type Props = { index: number } & Ym & JSX.HTMLAttributes<HTMLDivElement>;
 
-export const Month: Component<Props> = (rawProps) => {
-  const [props, elProps] = splitProps(rawProps, ['year', 'month', 'index']);
+export const Month = (props: Props) => {
+  const [local, elProps] = splitProps(props, ['year', 'month', 'index']);
   const quarter = useQuarter();
 
   let ref!: HTMLDivElement;
 
-  const firstWeekday = getFirstDayOfWeek(props);
-  const days = getDays(props);
+  const firstWeekday = getFirstDayOfWeek(local);
+  const days = getDays(local);
 
   const tiles = Array.from({ length: firstWeekday + days });
 
   onMount(() => {
-    if (today().getMonth() === props.month) {
+    if (today().getMonth() === local.month) {
       ref.scrollIntoView({ behavior: 'instant' });
-      setGridIndex(props.index);
+      setGridIndex(local.index);
     }
 
     createEffect(() => {
-      if (gridIndex() === props.index) {
+      if (gridIndex() === local.index) {
         ref.scrollIntoView({ behavior: 'smooth' });
         setVisibleQ(quarter as Quarter);
       }
@@ -63,13 +63,13 @@ export const Month: Component<Props> = (rawProps) => {
   });
 
   const name = () => {
-    return `${months[props.month]}`;
+    return `${months[local.month]}`;
   };
 
   return (
-    <YearProvider year={props.year}>
-      <MonthProvider month={props.month}>
-        <Container ref={ref} data-month={props.month} {...elProps}>
+    <YearProvider year={local.year}>
+      <MonthProvider month={local.month}>
+        <Container ref={ref} data-index={local.index} {...elProps}>
           <Grid>
             <Name>{name()}</Name>
             <Index each={tiles}>

@@ -1,4 +1,3 @@
-import type { Component } from 'solid-js';
 import { createMemo } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
@@ -30,7 +29,7 @@ const getPercent = (n: number, d: number) => {
   return Math.round((n / d) * 100);
 };
 
-export const Rto: Component<Props> = (props) => {
+export const Rto = (props: Props) => {
   const weekdays = props.yms.reduce((days, ym) => {
     return days + getWeekdays(ym);
   }, 0);

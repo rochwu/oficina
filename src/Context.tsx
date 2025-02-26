@@ -1,4 +1,4 @@
-import type { Component, JSXElement } from 'solid-js';
+import type { JSXElement } from 'solid-js';
 import { createContext, useContext } from 'solid-js';
 
 import type { Quarter } from './types';
@@ -8,9 +8,7 @@ const MonthContext = createContext(NaN);
 const YearContext = createContext(NaN);
 const QuarterContext = createContext<Quarter>();
 
-export const DayProvider: Component<{ children: JSXElement; day: number }> = (
-  props,
-) => {
+export const DayProvider = (props: { children: JSXElement; day: number }) => {
   return (
     <DayContext.Provider value={props.day}>
       {props.children}
@@ -18,10 +16,10 @@ export const DayProvider: Component<{ children: JSXElement; day: number }> = (
   );
 };
 
-export const MonthProvider: Component<{
+export const MonthProvider = (props: {
   children: JSXElement;
   month: number;
-}> = (props) => {
+}) => {
   return (
     <MonthContext.Provider value={props.month}>
       {props.children}
@@ -29,9 +27,7 @@ export const MonthProvider: Component<{
   );
 };
 
-export const YearProvider: Component<{ children: JSXElement; year: number }> = (
-  props,
-) => {
+export const YearProvider = (props: { children: JSXElement; year: number }) => {
   return (
     <YearContext.Provider value={props.year}>
       {props.children}
@@ -39,10 +35,10 @@ export const YearProvider: Component<{ children: JSXElement; year: number }> = (
   );
 };
 
-export const QuarterProvider: Component<{
+export const QuarterProvider = (props: {
   children: JSXElement;
   quarter: Quarter;
-}> = (props) => {
+}) => {
   return (
     <QuarterContext.Provider value={props.quarter}>
       {props.children}

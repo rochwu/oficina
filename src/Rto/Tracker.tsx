@@ -1,4 +1,3 @@
-import type { Component } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
 import { vars } from '../css';
@@ -26,7 +25,7 @@ const getPercent = (percent: number) => {
   return `${Math.round(percent).toFixed(1)}`.replace('.0', '');
 };
 
-export const Tracker: Component<Props> = (props) => {
+export const Tracker = (props: Props) => {
   const percent = () => getPercent(props.percent);
 
   return (
