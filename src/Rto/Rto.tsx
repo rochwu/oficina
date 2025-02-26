@@ -37,7 +37,7 @@ export const Rto = (props: Props) => {
   });
 
   const rto = createMemo(() => {
-    const weekdays = weekdays();
+    const totalWeekdays = weekdays();
 
     const { wfo = 0, pto = 0, holiday = 0, sick = 0 } = props.types;
     const total = totalWeekdays - holiday - pto - sick;
