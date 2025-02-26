@@ -7,7 +7,13 @@ import { MonthProvider, useQuarter, YearProvider } from '../Context';
 import { vars } from '../css';
 import { getDays, getFirstDayOfWeek } from '../date';
 import { Day } from '../Day';
-import { setGridIndex, setVisibleQ, today, gridIndex } from '../store';
+import {
+  setGridIndex,
+  setVisibleQ,
+  today,
+  gridIndex,
+  setIsScrolling,
+} from '../store';
 import type { Quarter, Ym } from '../types';
 
 const Container = styled.div({
@@ -56,7 +62,10 @@ export const Month = (props: Props) => {
 
     createEffect(() => {
       if (gridIndex() === local.index) {
+        setIsScrolling(true);
         ref.scrollIntoView({ behavior: 'smooth' });
+
+        // Update later, we probs want to do it after we've arrived at the month
         setVisibleQ(quarter as Quarter);
       }
     });

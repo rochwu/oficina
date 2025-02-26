@@ -1,10 +1,11 @@
 import { collection, getDocs, writeBatch } from 'firebase/firestore';
+import { untrack } from 'solid-js';
 
 import { db } from '../firebase';
 import { user } from './signals';
 
 const convert = async () => {
-  const key = user();
+  const key = untrack(user);
 
   if (!key) {
     return;

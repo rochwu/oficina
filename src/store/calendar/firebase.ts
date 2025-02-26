@@ -1,5 +1,6 @@
 import type { DocumentData, QuerySnapshot } from 'firebase/firestore';
 import { collection, doc } from 'firebase/firestore';
+import { untrack } from 'solid-js';
 
 import { db } from '../../firebase';
 import type { Ym, Ymd, Day, YmdDay } from '../../types';
@@ -9,7 +10,7 @@ export const getDaysRef = ({ year, month }: Ym) => {
   return collection(
     db,
     'calendars',
-    user(),
+    untrack(user),
     'years',
     year.toString(),
     'months',
