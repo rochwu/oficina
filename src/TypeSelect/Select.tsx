@@ -2,7 +2,7 @@ import './select.css';
 
 import type { SelectRootProps } from '@kobalte/core/select';
 import { Select as Base } from '@kobalte/core/select';
-import type { Component, JSXElement } from 'solid-js';
+import type { JSXElement } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
 import { vars } from '../css';
@@ -34,7 +34,7 @@ const Selected = styled.span({
   position: 'relative',
 });
 
-export const Select: Component<SelectProps> = (props) => {
+export const Select = (props: SelectProps) => {
   return (
     <Base
       style={{

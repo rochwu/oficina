@@ -1,4 +1,4 @@
-import type { Component, JSXElement } from 'solid-js';
+import type { JSXElement } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
 type Props = {
@@ -23,6 +23,6 @@ const Container = styled.div({
   touchAction: 'none',
 });
 
-export const Grid: Component<Props> = (props) => {
+export const Grid = (props: Props) => {
   return <Container>{props.children}</Container>;
 };

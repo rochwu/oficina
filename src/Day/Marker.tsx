@@ -1,4 +1,4 @@
-import type { Component, JSXElement } from 'solid-js';
+import { splitProps, type JSXElement } from 'solid-js';
 import type { CSSAttribute } from 'solid-styled-components';
 import { styled } from 'solid-styled-components';
 
@@ -49,10 +49,12 @@ const getDataAttribute = (type?: DayType) => {
     : {};
 };
 
-export const Marker: Component<Props> = (props) => {
+export const Marker = (props: Props) => {
+  const [local, elProps] = splitProps(props, ['type', 'children']);
+
   return (
-    <Container {...getDataAttribute(props.type)} {...props}>
-      {props.children}
+    <Container {...getDataAttribute(local.type)} {...elProps}>
+      {local.children}
     </Container>
   );
 };

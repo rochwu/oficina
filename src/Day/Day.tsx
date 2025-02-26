@@ -1,4 +1,3 @@
-import type { Component } from 'solid-js';
 import { Show } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
@@ -36,7 +35,7 @@ const Container = styled.div({
 // Need this to hold a spot in the grid layout
 const Fallback = styled.div({});
 
-export const Day: Component<Props> = (props) => {
+export const Day = (props: Props) => {
   const year = useYear();
   const month = useMonth();
 

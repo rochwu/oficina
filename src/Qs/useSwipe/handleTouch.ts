@@ -62,7 +62,7 @@ export const handleTouchStart =
   };
 
 export const handleTouchMove =
-  (callback: (direction: SwipeAction) => void) => (event: TouchEvent) => {
+  (_callback: (direction: SwipeAction) => void) => (event: TouchEvent) => {
     if (!ended) {
       const { screenX, screenY } = event.changedTouches[0]!;
       updateAverage(screenX, screenY);

@@ -1,4 +1,3 @@
-import type { Component } from 'solid-js';
 import { createEffect, For, Show } from 'solid-js';
 import { produce } from 'solid-js/store';
 
@@ -16,7 +15,7 @@ type Props = {
   indices: [number, number, number];
 };
 
-export const Q: Component<Props> = (props) => {
+export const Q = (props: Props) => {
   const typeSum = useTypeSum(props.yms);
 
   createEffect(() => {
@@ -30,13 +29,7 @@ export const Q: Component<Props> = (props) => {
   return (
     <QuarterProvider quarter={props.quarter}>
       <For each={props.yms}>
-        {(ym, index) => (
-          <Month
-            {...ym}
-            id={`q${props.quarter}-${ym.year}-${ym.month}`}
-            index={props.indices[index()]!}
-          />
-        )}
+        {(ym, index) => <Month {...ym} index={props.indices[index()]!} />}
       </For>
       <Show when={props.current}>
         <Rto types={typeSum()} yms={props.yms} />

@@ -1,4 +1,4 @@
-import type { Component, JSXElement } from 'solid-js';
+import type { JSXElement } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
 import { vars } from '../css';
@@ -32,7 +32,7 @@ type Props = {
   end: JSXElement;
 };
 
-export const Possible: Component<Props> = (props) => {
+export const Possible = (props: Props) => {
   return (
     <Container>
       <Start>{props.start}</Start>

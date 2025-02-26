@@ -3,8 +3,8 @@ import { styled } from 'solid-styled-components';
 import { Q } from '../Q';
 import { Today } from './Today';
 import { qs, setGridIndex, useCalendarFromServer } from '../store';
-import { useSwipe } from '../useSwipe';
 import { Grid } from './Grid';
+import { useSwipe } from './useSwipe';
 
 const Container = styled.div({
   position: 'relative',
@@ -33,6 +33,8 @@ export const Qs = () => {
   useCalendarFromServer();
 
   useSwipe((direction) => {
+    console.log(direction);
+
     switch (direction) {
       case 'down': {
         setGridIndex(move(-1));
@@ -58,7 +60,7 @@ export const Qs = () => {
     <Container>
       <Grid ref={ref}>
         <Q {...qs().last} indices={[0, 1, 2]} />
-        <Q {...qs().now} current indices={[3, 4, 5]} />
+        <Q {...qs().now} indices={[3, 4, 5]} current />
         <Q {...qs().next} indices={[6, 7, 8]} />
       </Grid>
       <Today />
