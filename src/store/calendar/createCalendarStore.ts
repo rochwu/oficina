@@ -2,6 +2,7 @@ import { untrack } from 'solid-js';
 import { createStore, reconcile, unwrap } from 'solid-js/store';
 
 import { getQuarter, getYms } from '../../date/quarters';
+import { tutorial } from '../../tutorial';
 import type { Calendar } from '../../types';
 import { createIndexedDb } from '../indexedDb';
 import { today } from '../today';
@@ -106,6 +107,9 @@ export const createCalendarStore = () => {
   });
 
   const set = (...args: any[]) => {
+    // Mark whenever we set, including when IndexedDB, localStorage or firestore
+    tutorial.done();
+
     (setStore as any)(...args);
 
     /**

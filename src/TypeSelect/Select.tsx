@@ -2,7 +2,7 @@ import './select.css';
 
 import type { SelectRootProps } from '@kobalte/core/select';
 import { Select as Base } from '@kobalte/core/select';
-import type { JSXElement } from 'solid-js';
+import { type JSXElement } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
 import { vars } from '../css';
@@ -17,7 +17,7 @@ export type SelectProps = {
   value: SelectOption;
   options: SelectOption[];
   onChange: (option: SelectOption | null) => void;
-} & Pick<SelectRootProps<SelectOption>, 'placeholder'>;
+} & Pick<SelectRootProps<SelectOption>, 'placeholder' | 'onOpenChange'>;
 
 const Hint = styled.div({
   position: 'absolute',
@@ -40,12 +40,11 @@ export const Select = (props: SelectProps) => {
       style={{
         'font-size': vars.select.fontSize,
       }}
-      // defaultValue={props.defaultValue}
       value={props.value}
       onChange={props.onChange}
+      onOpenChange={props.onOpenChange}
       options={props.options}
       optionValue="value"
-      // optionTextValue="label"
       placeholder={props.placeholder}
       itemComponent={(props) => (
         <Base.Item item={props.item} class="select__item">
