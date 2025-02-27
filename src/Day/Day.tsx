@@ -12,7 +12,9 @@ type Props = {
   weekday: number;
 };
 
-const Container = styled.div({
+const Container = styled.button({
+  all: 'unset',
+
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -73,7 +75,6 @@ export const Day = (props: Props) => {
   return (
     <Show when={isInMonth()} fallback={<Fallback />}>
       <Container
-        role="button"
         {...events}
         data-disabled={disabled()}
         data-weekend={isWeekend ? '' : undefined}

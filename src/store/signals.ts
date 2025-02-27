@@ -8,8 +8,6 @@ import type { DayType } from '../types';
  * I def didn't want to persist user in case they log out
  */
 
-export const [isScrolling, setIsScrolling] = createSignal(false);
-
 export const [user, setUser] = createSignal('');
 
 export const [dayType, setDayType] = createSignal<DayType>('wfo');

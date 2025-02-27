@@ -1,15 +1,14 @@
-import { untrack } from 'solid-js';
 import type { JSX } from 'solid-js/jsx-runtime';
 
 import { removeDelayMs } from '../constants';
-import { isScrolling, remove, select } from '../store';
+import { remove, select } from '../store';
 import type { Ymd } from '../types';
 
 export const useEvents = ({
   year,
   month,
   day,
-}: Ymd): JSX.HTMLAttributes<HTMLDivElement> => {
+}: Ymd): JSX.HTMLAttributes<HTMLButtonElement> => {
   let stopSave = true;
   let timeout = NaN;
 
@@ -23,9 +22,7 @@ export const useEvents = ({
     timeout = window.setTimeout(() => {
       stopSave = true;
 
-      if (!untrack(isScrolling)) {
-        remove({ month, year, day });
-      }
+      remove({ month, year, day });
     }, removeDelayMs);
   };
 
@@ -34,9 +31,7 @@ export const useEvents = ({
     reset();
 
     if (!stop) {
-      if (!untrack(isScrolling)) {
-        select({ month, year, day });
-      }
+      select({ month, year, day });
     }
   };
 

@@ -5,7 +5,9 @@ import { setGridIndex } from '../store';
 
 type Props = {};
 
-const Container = styled.div({
+const Container = styled.button({
+  all: 'unset',
+
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -31,9 +33,5 @@ export const Today = (_: Props) => {
     setGridIndex(Number(el.getAttribute('data-index')!));
   };
 
-  return (
-    <Container role="button" onClick={goTo}>
-      tdy
-    </Container>
-  );
+  return <Container onClick={goTo}>tdy</Container>;
 };

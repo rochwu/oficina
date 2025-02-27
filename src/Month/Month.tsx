@@ -27,7 +27,9 @@ const Grid = styled.div({
   position: 'relative',
 });
 
-const Name = styled.div({
+const Name = styled.h2({
+  all: 'unset',
+
   textTransform: 'uppercase',
   position: 'absolute',
   transform: 'translateY(-100%)',
@@ -56,7 +58,6 @@ export const Month = (props: Props) => {
 
     createEffect(() => {
       if (gridIndex() === local.index) {
-        // setIsScrolling(true);
         ref.scrollIntoView({ behavior: 'smooth' });
 
         // Update later, we probs want to do it after we've arrived at the month
