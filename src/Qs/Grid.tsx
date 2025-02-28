@@ -1,5 +1,7 @@
-import { type JSXElement } from 'solid-js';
+import { onCleanup, onMount, untrack, type JSXElement } from 'solid-js';
 import { styled } from 'solid-styled-components';
+
+import { gridIndex } from '../store';
 
 type Props = {
   children: JSXElement;
@@ -24,5 +26,25 @@ const Container = styled.div({
 });
 
 export const Grid = (props: Props) => {
-  return <Container>{props.children}</Container>;
+  let ref!: HTMLDivElement;
+
+  onMount(() => {
+    const callback = () => {
+      document
+        .querySelector(`[data-index="${untrack(gridIndex)}"]`)
+        ?.scrollIntoView({
+          behavior: 'instant',
+        });
+    };
+
+    const observer = new ResizeObserver(callback);
+
+    observer.observe(document.body);
+
+    onCleanup(() => {
+      observer.disconnect();
+    });
+  });
+
+  return <Container ref={ref}>{props.children}</Container>;
 };

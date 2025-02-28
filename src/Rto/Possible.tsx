@@ -9,7 +9,7 @@ const Container = styled.div({
 
   borderRadius: '6px',
   backgroundColor: vars.white,
-  color: 'black',
+  color: vars.black,
   padding: '4px 8px',
 });
 

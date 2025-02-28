@@ -3,6 +3,7 @@ import { createCssVars } from './createCssVars';
 export const { root, vars } = createCssVars(
   { namespace: 'ofcn' },
   {
+    black: 'black',
     white: '#FFF5EE',
     fontSize: {
       small: '16px',
@@ -35,22 +36,22 @@ export const { root, vars } = createCssVars(
     },
     pto: {
       backgroundColor: '#92E192',
-      color: 'black',
+      color: base.black,
     },
     sick: {
       backgroundColor: '#A080A0', // Dusty Mauve - soft and distinctive
-      color: 'black',
+      color: base.black,
     },
     holiday: {
       backgroundColor: '#FFB347',
-      color: 'black',
+      color: base.black,
     },
     select: {
       fontSize: base.fontSize.large,
       backgroundColor: base.white,
-      color: 'black',
+      color: base.black,
       hover: {
-        backgroundColor: 'black',
+        backgroundColor: base.black,
         color: base.white,
       },
     },
