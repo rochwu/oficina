@@ -1,6 +1,11 @@
 import './google.css';
 
-import { getAuth, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+} from 'firebase/auth';
 import { styled } from 'solid-styled-components';
 
 import { vars } from '../css';
@@ -24,6 +29,12 @@ export const SignIn = () => {
   const provider = new GoogleAuthProvider();
 
   const signIn = () => {
+    if (import.meta.env.MODE !== 'production') {
+      // signInWithRedirect doesn't seem to work on dev mode, while popup does
+      signInWithPopup(auth, provider);
+      return;
+    }
+
     signInWithRedirect(auth, provider);
   };
 
