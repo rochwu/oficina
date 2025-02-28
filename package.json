@@ -4,13 +4,15 @@
   "description": "",
   "scripts": {
     "start": "vite --open",
+    "stats": "STATS=true vite build",
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
     "check-types": "tsc --noEmit",
     "clean-branches": "git branch | grep -v \"main\" | xargs git branch -D",
     "format": "prettier . --write",
-    "lint": "eslint . --quiet --fix"
+    "lint": "eslint . --quiet --fix",
+    "preview": "vite build; vite preview --open"
   },
   "license": "MIT",
   "devDependencies": {

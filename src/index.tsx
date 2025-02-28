@@ -2,6 +2,7 @@
 import { render } from 'solid-js/web';
 
 import { App } from './App';
+import { expose } from './dev/expose';
 
 const root = document.getElementById('root');
 
@@ -14,3 +15,5 @@ document.addEventListener(
 );
 
 render(() => <App />, root!);
+
+expose();

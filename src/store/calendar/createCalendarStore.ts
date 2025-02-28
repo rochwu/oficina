@@ -84,6 +84,9 @@ const createLocalStorage = () => {
   return { get, set };
 };
 
+export const ls = createLocalStorage();
+export const db = createIndexedDb('calendar');
+
 /**
  * Taking a lot of ideas from @solid-primitives/storage makePersisted
  *
@@ -91,8 +94,6 @@ const createLocalStorage = () => {
  * IndexedDB takes objects much better
  */
 export const createCalendarStore = () => {
-  const ls = createLocalStorage();
-  const db = createIndexedDb('calendar');
   const store = createStore<Calendar>(ls.get() ?? {});
 
   const [storeProxy, setStore] = store;

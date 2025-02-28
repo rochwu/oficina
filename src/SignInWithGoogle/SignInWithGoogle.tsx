@@ -42,9 +42,3 @@ export const SignInWithGoogle = () => {
     </Show>
   );
 };
-
-Object.defineProperty(window, 'oficina', {
-  value: {
-    signOut: auth.signOut,
-  },
-});

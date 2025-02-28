@@ -15,9 +15,11 @@ export default defineConfig({
     // devtools(),
     solidPlugin(),
     basicSsl(),
-    visualizer({
-      open: true,
-    }),
+    process.env.STATS === 'true'
+      ? visualizer({
+          open: true,
+        })
+      : null,
   ],
   server: {
     // I don't know which config is it, but I can't make firebase work if it isn't this host or port
