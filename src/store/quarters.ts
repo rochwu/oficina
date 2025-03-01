@@ -1,4 +1,4 @@
-import { createMemo, createSignal } from 'solid-js';
+import { createMemo, createSignal, untrack } from 'solid-js';
 
 import { getQuarters } from '../date/quarters';
 import type { ByTypes, Quarter } from '../types';
@@ -21,7 +21,7 @@ export const currentQ = createMemo(() => {
   return qs().now.quarter;
 });
 
-export const [visibleQ, setVisibleQ] = createSignal(currentQ());
+export const [visibleQ, setVisibleQ] = createSignal(untrack(currentQ));
 
 export const [rtoByQ, setRtoByQ] = createSignal<Record<Quarter, ByTypes>>(
   {} as never,
