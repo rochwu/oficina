@@ -18,7 +18,7 @@ export const expose = () => {
   const auth = getAuth(app);
 
   window.oficina ??= {
-    signOut: auth.signOut,
+    signOut: () => auth.signOut(),
   } as never;
 
   // Real dev mode only
