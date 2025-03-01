@@ -25,25 +25,11 @@ const getPercent = (percent: number) => {
   return `${Math.round(percent).toFixed(1)}`.replace('.0', '');
 };
 
-const emptyColor = vars.black;
-const fullColor = vars.white;
-
 export const Tracker = (props: Props) => {
   const percent = () => getPercent(props.percent);
-  const progress = () => {
-    const percent = Math.round((props.percent / 50) * 100);
-
-    return 100 - Math.min(Math.max(percent, 0), 100);
-  };
 
   return (
-    <Container
-      style={{
-        background: `linear-gradient(to left, ${emptyColor} 0%, ${emptyColor} ${progress()}%, ${fullColor} ${progress()}%, ${fullColor} 100%)`,
-        'background-clip': 'text',
-        '-webkit-text-fill-color': 'transparent',
-      }}
-    >
+    <Container>
       {props.wfo}
       <Small>/</Small>
       {props.required}
