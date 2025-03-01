@@ -37,6 +37,5 @@ export const Tracker = (props: Props) => {
       {percent()}
       <Small>%</Small>
     </Container>
-    // <Container>{`${props.wfo} / ${props.required} = ${percent()}%`}</Container>
   );
 };
