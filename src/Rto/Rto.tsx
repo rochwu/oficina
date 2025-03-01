@@ -23,6 +23,8 @@ const Container = styled.div({
   bottom: 0,
   left: 0,
   padding: vars.gap,
+
+  gap: '2px',
 });
 
 const getPercent = (n: number, d: number) => {

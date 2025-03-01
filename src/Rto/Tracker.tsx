@@ -11,6 +11,7 @@ type Props = {
 const Container = styled.div({
   display: 'flex',
   fontSize: vars.tracker.fontSize,
+  lineHeight: '28px', // Compare this with Today, to maintain corner padding
 });
 
 const Small = styled.span({

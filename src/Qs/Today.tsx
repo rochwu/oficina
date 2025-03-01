@@ -9,9 +9,8 @@ const Container = styled.button({
   all: 'unset',
 
   display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
+  justifyContent: 'end',
+  alignItems: 'end',
 
   position: 'absolute',
   bottom: 0,
@@ -20,8 +19,16 @@ const Container = styled.button({
   cursor: 'pointer',
 
   minHeight: vars.marker.size,
-  padding: '0 16px', // Whatever helps fit the 48px size uniformly in a corner
+  minWidth: vars.marker.size,
+});
 
+const Text = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+
+  padding: '10px', // Makes it really close with Tracker's padding. Which is mostly line-height
   textDecoration: vars.today.textDecoration,
   color: vars.today.color,
 });
@@ -33,5 +40,9 @@ export const Today = (_: Props) => {
     setGridIndex(Number(el.getAttribute('data-index')!));
   };
 
-  return <Container onClick={goTo}>tdy</Container>;
+  return (
+    <Container onClick={goTo}>
+      <Text>tdy</Text>
+    </Container>
+  );
 };
