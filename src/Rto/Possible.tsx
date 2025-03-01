@@ -1,6 +1,6 @@
-import type { JSXElement } from 'solid-js';
 import { styled } from 'solid-styled-components';
 
+import type { Numbers } from './types';
 import { vars } from '../css';
 
 const Container = styled.div({
@@ -27,17 +27,12 @@ const End = styled.span({
   alignItems: 'center',
 });
 
-type Props = {
-  start: JSXElement;
-  end: JSXElement;
-};
-
-export const Possible = (props: Props) => {
+export const Possible = (props: Numbers) => {
   return (
     <Container>
-      <Start>{props.start}</Start>
+      <Start>{props.missing}</Start>
       <Divider>{'/'}</Divider>
-      <End> {props.end}</End>
+      <End>{props.possible} posbl</End>
     </Container>
   );
 };

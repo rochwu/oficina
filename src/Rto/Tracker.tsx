@@ -1,12 +1,7 @@
 import { styled } from 'solid-styled-components';
 
+import type { Numbers } from './types';
 import { vars } from '../css';
-
-type Props = {
-  wfo: number;
-  required: number;
-  percent: number;
-};
 
 const Container = styled.div({
   display: 'flex',
@@ -26,7 +21,7 @@ const getPercent = (percent: number) => {
   return `${Math.round(percent).toFixed(1)}`.replace('.0', '');
 };
 
-export const Tracker = (props: Props) => {
+export const Tracker = (props: Numbers) => {
   const percent = () => getPercent(props.percent);
 
   return (

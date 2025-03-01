@@ -5,6 +5,7 @@ import { Today } from './Today';
 import { qs, setGridIndex, useCalendarFromServer } from '../store';
 import { Grid } from './Grid';
 import { useSwipe } from './useSwipe';
+import { Rto } from '../Rto';
 
 const Container = styled.div({
   position: 'relative',
@@ -58,9 +59,10 @@ export const Qs = () => {
     <Container>
       <Grid ref={ref}>
         <Q {...qs().last} indices={[0, 1, 2]} />
-        <Q {...qs().now} indices={[3, 4, 5]} current />
+        <Q {...qs().now} indices={[3, 4, 5]} />
         <Q {...qs().next} indices={[6, 7, 8]} />
       </Grid>
+      <Rto />
       <Today />
     </Container>
   );

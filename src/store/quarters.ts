@@ -1,8 +1,7 @@
 import { createMemo, createSignal, untrack } from 'solid-js';
 
-import { getQuarters } from '../date/quarters';
-import type { ByTypes, Quarter } from '../types';
 import { today } from './today';
+import { getQuarters } from '../date/quarters';
 
 // Only wake up `qs` if actual values changes
 const month = () => today().getMonth();
@@ -17,12 +16,4 @@ export const qs = createMemo(() => {
   return quarters;
 });
 
-export const currentQ = createMemo(() => {
-  return qs().now.quarter;
-});
-
-export const [visibleQ, setVisibleQ] = createSignal(untrack(currentQ));
-
-export const [rtoByQ, setRtoByQ] = createSignal<Record<Quarter, ByTypes>>(
-  {} as never,
-);
+export const [visibleQ, setVisibleQ] = createSignal(untrack(qs).now.quarter);
