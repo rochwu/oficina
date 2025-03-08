@@ -12,7 +12,7 @@ type Props = {
   weekday: number;
 };
 
-const Container = styled.button({
+const Button = styled.button({
   all: 'unset',
 
   display: 'flex',
@@ -74,7 +74,7 @@ export const Day = (props: Props) => {
 
   return (
     <Show when={isInMonth()} fallback={<Fallback />}>
-      <Container
+      <Button
         {...events}
         data-disabled={disabled()}
         data-weekend={isWeekend ? '' : undefined}
@@ -82,7 +82,7 @@ export const Day = (props: Props) => {
         <Marker type={type()} {...maybeToday()}>
           {props.day + 1}
         </Marker>
-      </Container>
+      </Button>
     </Show>
   );
 };

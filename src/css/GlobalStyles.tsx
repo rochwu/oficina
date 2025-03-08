@@ -15,11 +15,13 @@ export const GlobalStyles = createGlobalStyles({
     margin: 0,
 
     userSelect: 'none',
-    '-webkit-user-select': 'none', // Safari
+    WebkitUserSelect: 'none', // Safari
     touchAction: 'none', // Stops gestures
 
     overflow: 'hidden', // Stops pull-to-refresh
     overscrollBehavior: 'none', // Stops the iOS bounce effect at the edges
+
+    WebkitTapHighlightColor: 'transparent', // Removes responsive box
   },
 
   '#root': {
