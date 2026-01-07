@@ -7,7 +7,7 @@ import { MonthProvider, useQuarter, YearProvider } from '../Context';
 import { vars } from '../css';
 import { getDays, getFirstDayOfWeek } from '../date';
 import { Day } from '../Day';
-import { setGridIndex, setVisibleQ, today, gridIndex } from '../store';
+import { gridIndex, setGridIndex, setVisibleQ, today } from '../store';
 import type { Quarter, Ym } from '../types';
 
 const Container = styled.div({
@@ -73,7 +73,13 @@ export const Month = (props: Props) => {
   return (
     <YearProvider year={local.year}>
       <MonthProvider month={local.month}>
-        <Container ref={ref} data-index={local.index} {...elProps}>
+        <Container
+          ref={ref}
+          data-index={local.index}
+          data-year={local.year}
+          data-month={local.month}
+          {...elProps}
+        >
           <Grid>
             <Name>{name()}</Name>
             <Index each={tiles}>
