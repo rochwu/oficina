@@ -12,7 +12,8 @@
     "clean-branches": "git branch | grep -v \"main\" | xargs git branch -D",
     "format": "prettier . --write",
     "lint": "eslint . --quiet --fix",
-    "preview": "vite build; vite preview --open"
+    "preview": "vite build; vite preview --open",
+    "test": "vitest run"
   },
   "license": "MIT",
   "devDependencies": {
@@ -23,13 +24,15 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-solid": "^0.14.5",
     "eslint-plugin-unused-imports": "^4.1.4",
+    "jsdom": "^27.4.0",
     "prettier": "^3.5.2",
     "rollup-plugin-visualizer": "^5.14.0",
     "solid-devtools": "^0.33.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.24.1",
     "vite": "^6.1.1",
-    "vite-plugin-solid": "^2.11.2"
+    "vite-plugin-solid": "^2.11.2",
+    "vitest": "^4.0.16"
   },
   "dependencies": {
     "@kobalte/core": "^0.13.9",
