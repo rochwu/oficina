@@ -1,18 +1,13 @@
-import {
-  onSnapshot,
-  runTransaction,
-  serverTimestamp,
-} from 'firebase/firestore';
+import { onSnapshot, serverTimestamp, setDoc } from 'firebase/firestore';
 import { createEffect, untrack } from 'solid-js';
 import { produce } from 'solid-js/store';
 
-import { changeDay } from './changeDay';
-import { createCalendarStore } from './createCalendarStore';
-import { getDayRef, getDaysRef, parseYmdDays } from './firebase';
-import { db } from '../../firebase';
 import type { Day, Ym, Ymd } from '../../types';
 import { qs } from '../quarters';
 import { dayType, user } from '../signals';
+import { changeDay } from './changeDay';
+import { createCalendarStore } from './createCalendarStore';
+import { getDayRef, getDaysRef, parseYmdDays } from './firebase';
 import { getDay } from './selectors';
 
 export const [calendar, setCalendar] = createCalendarStore();
@@ -22,14 +17,16 @@ const saveDay = (ymd: Ymd) => {
     const { type } = day;
 
     if (untrack(user)) {
-      runTransaction(db, async (transaction) => {
-        const dayRef = getDayRef(ymd);
+      const dayRef = getDayRef(ymd);
 
-        transaction.set(dayRef, {
+      setDoc(
+        dayRef,
+        {
           type,
           updated: serverTimestamp(),
-        });
-      }).catch((error) => {
+        },
+        { merge: true },
+      ).catch((error) => {
         console.error('🤬 I fucked up saving', type, error);
       });
     }
